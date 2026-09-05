@@ -59,8 +59,6 @@ public class PontoDetailActivity extends AppCompatActivity {
         recycler.setAdapter(new AcceptedItemAdapter(this, currentPoint.getAcceptedItems()));
 
         Button btnConfirmar = findViewById(R.id.btnConfirmarDescarte);
-        btnConfirmar.setOnClickListener(v -> {
-            // próximo passo: abrir ConfirmarDescarteActivity passando currentPoint
-        });
+        btnConfirmar.setOnClickListener(v -> ConfirmarDescarteActivity.start(this, currentPoint));
     }
 }

@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="12dp">
+
+        <ImageButton
+            android:id="@+id/btnVoltarConfirmar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_chevron_left"
+            app:tint="@color/primary"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Confirmar Descarte"
+            android:textColor="@color/foreground"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="40dp"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="20dp">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="O QUE VOCÊ VAI DESCARTAR?"
+                android:textColor="@color/muted_foreground"
+                android:textSize="12sp"
+                android:textStyle="bold"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="12dp"/>
+
+            <!-- 2 colunas de toggles -->
+            <LinearLayout
+                android:id="@+id/containerToggles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp"/>
+
+            <TextView
+                android:id="@+id/txtErrorMsg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/error_box_bg"
+                android:padding="12dp"
+                android:textColor="@color/destructive"
+                android:textSize="13sp"
+                android:visibility="gone"
+                android:layout_marginBottom="16dp"/>
+
+            <LinearLayout
+                android:id="@+id/containerSelecionados"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- Card de pontos -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:gravity="center"
+                android:background="@drawable/gradient_hero"
+                android:padding="20dp"
+                android:layout_marginBottom="20dp">
+
+                <TextView
+                    android:id="@+id/txtTotalPoints"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+0"
+                    android:textColor="@color/primary"
+                    android:textSize="40sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="pontos que você vai ganhar"
+                    android:textColor="@color/muted_foreground"
+                    android:textSize="12sp"/>
+
+                <TextView
+                    android:id="@+id/txtEquivalenteReais"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="≈ R\$ 0,00 em parceiros"
+                    android:textColor="@color/muted_foreground"
+                    android:textSize="11.5sp"/>
+
+            </LinearLayout>
+
+            <Button
+                android:id="@+id/btnRegistrarDescarte"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:background="@drawable/gradient_cta_button"
+                android:text="Registrar meu descarte"
+                android:textColor="@color/white"
+                android:textSize="14.5sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

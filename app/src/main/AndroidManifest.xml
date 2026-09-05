@@ -24,6 +24,8 @@
         <activity android:name=".GuiaDescarteActivity" android:exported="false"/>
         <activity android:name=".PontosActivity" android:exported="false"/>
         <activity android:name=".PontoDetailActivity" android:exported="false"/>
+        <activity android:name=".ConfirmarDescarteActivity" android:exported="false"/>
+        <activity android:name=".SucessoActivity" android:exported="false"/>
     </application>
 
 </manifest>
