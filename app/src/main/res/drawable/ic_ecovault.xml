@@ -1,0 +1,49 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="180dp"
+    android:height="180dp"
+    android:viewportWidth="100"
+    android:viewportHeight="100">
+
+    <!-- Seta curva 1 -->
+    <group android:pivotX="50" android:pivotY="50" android:rotation="0">
+        <path
+            android:fillColor="#16A34A"
+            android:pathData="M50,15
+                               C65,15 76,24 80,38
+                               L88,34
+                               L82,52
+                               L64,46
+                               L72,42
+                               C68,32 60,26 50,26
+                               Z"/>
+    </group>
+
+    <!-- Seta curva 2 (120°) -->
+    <group android:pivotX="50" android:pivotY="50" android:rotation="120">
+        <path
+            android:fillColor="#22C55E"
+            android:pathData="M50,15
+                               C65,15 76,24 80,38
+                               L88,34
+                               L82,52
+                               L64,46
+                               L72,42
+                               C68,32 60,26 50,26
+                               Z"/>
+    </group>
+
+    <!-- Seta curva 3 (240°) -->
+    <group android:pivotX="50" android:pivotY="50" android:rotation="240">
+        <path
+            android:fillColor="#4ADE80"
+            android:pathData="M50,15
+                               C65,15 76,24 80,38
+                               L88,34
+                               L82,52
+                               L64,46
+                               L72,42
+                               C68,32 60,26 50,26
+                               Z"/>
+    </group>
+
+</vector>

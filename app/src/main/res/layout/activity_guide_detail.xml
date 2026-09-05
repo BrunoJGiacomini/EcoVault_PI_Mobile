@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- Barra superior com voltar -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="16dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="12dp">
+
+        <ImageButton
+            android:id="@+id/btnVoltar"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_chevron_left"
+            app:tint="@color/primary"
+            xmlns:app="http://schemas.android.com/apk/res-auto"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="20dp"
+            android:paddingEnd="20dp"
+            android:paddingBottom="30dp">
+
+            <!-- Ícone grande -->
+            <FrameLayout
+                android:id="@+id/frameIconGrande"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/icon_bg_red">
+
+                <ImageView
+                    android:id="@+id/imgIconGrande"
+                    android:layout_width="32dp"
+                    android:layout_height="32dp"
+                    android:layout_gravity="center"
+                    android:src="@drawable/ic_warning"
+                    app:tint="@color/destructive"
+                    xmlns:app="http://schemas.android.com/apk/res-auto"/>
+            </FrameLayout>
+
+            <!-- Título -->
+            <TextView
+                android:id="@+id/txtDetailTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nunca quebre lâmpadas fluorescentes"
+                android:textColor="@color/foreground"
+                android:textSize="24sp"
+                android:textStyle="bold"
+                android:layout_marginBottom="10dp"/>
+
+            <!-- Subtítulo curto -->
+            <TextView
+                android:id="@+id/txtDetailSubtitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mercúrio tóxico é liberado no ar. Veja o descarte seguro."
+                android:textColor="@color/muted_foreground"
+                android:textSize="15sp"
+                android:lineSpacingExtra="3dp"
+                android:layout_marginBottom="24dp"/>
+
+            <!-- Corpo do artigo -->
+            <TextView
+                android:id="@+id/txtDetailCorpo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="@color/foreground"
+                android:textSize="15sp"
+                android:lineSpacingExtra="6dp"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/background">
+
+    <!-- TopBar com voltar + título -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:paddingStart="8dp"
+        android:paddingEnd="20dp"
+        android:paddingTop="20dp"
+        android:paddingBottom="12dp">
+
+        <ImageButton
+            android:id="@+id/btnVoltarGuia"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:src="@drawable/ic_chevron_left"
+            app:tint="@color/primary"/>
+
+        <TextView
+            android:id="@+id/txtBackLabel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Voltar"
+            android:textColor="@color/primary"
+            android:textSize="14sp"
+            android:layout_marginStart="2dp"/>
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:text="Guia de Descarte"
+            android:textColor="@color/foreground"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:layout_marginEnd="40dp"/>
+
+    </LinearLayout>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="24dp">
+
+            <!-- HERO -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:background="@drawable/gradient_hero"
+                android:padding="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical"
+                    android:layout_marginBottom="10dp">
+
+                    <ImageView
+                        android:layout_width="26dp"
+                        android:layout_height="26dp"
+                        android:src="@drawable/ic_recycle"
+                        app:tint="@color/primary"/>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:text="Guia Completo de Descarte"
+                        android:textColor="@color/foreground"
+                        android:textSize="19sp"
+                        android:textStyle="bold"/>
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Saiba como descartar corretamente cada tipo de material eletrônico. Proteja o meio ambiente e ganhe pontos por cada descarte responsável."
+                    android:textColor="@color/muted_foreground"
+                    android:textSize="13.5sp"
+                    android:lineSpacingExtra="3dp"/>
+
+            </LinearLayout>
+
+            <!-- INFO BANNER -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:background="@drawable/info_banner_bg"
+                android:padding="14dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp">
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_marginTop="2dp"
+                    android:src="@drawable/ic_info"
+                    app:tint="@color/primary"/>
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:layout_marginStart="10dp"
+                    android:textColor="@color/muted_foreground"
+                    android:textSize="12.5sp"
+                    android:lineSpacingExtra="3dp"
+                    android:text="Sabia que? O Brasil descarta mais de 2 milhões de toneladas de lixo eletrônico por ano, mas apenas 3% é reciclado corretamente. Faça parte da mudança!"/>
+
+            </LinearLayout>
+
+            <!-- SECTION: Categorias -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Categorias de Materiais"
+                android:textColor="@color/foreground"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="14dp"/>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/recyclerCategorias"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_marginBottom="20dp"/>
+
+            <!-- SECTION: Dicas de segurança -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Dicas de Segurança"
+                android:textColor="@color/foreground"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="14dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_marginBottom="20dp">
+
+                <include android:id="@+id/dicaCard1" layout="@layout/item_guide_card"/>
+                <include android:id="@+id/dicaCard2" layout="@layout/item_guide_card"/>
+                <include android:id="@+id/dicaCard3" layout="@layout/item_guide_card"/>
+                <include android:id="@+id/dicaCard4" layout="@layout/item_guide_card"/>
+                <include android:id="@+id/dicaCard5" layout="@layout/item_guide_card"/>
+                <include android:id="@+id/dicaCard6" layout="@layout/item_guide_card"/>
+
+            </LinearLayout>
+
+            <!-- SECTION: Passos -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Como Descartar em 3 Passos"
+                android:textColor="@color/foreground"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:paddingBottom="14dp"/>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingStart="20dp"
+                android:paddingEnd="20dp"
+                android:layout_marginBottom="20dp">
+
+                <include android:id="@+id/stepCard1" layout="@layout/item_step_card"/>
+                <include android:id="@+id/stepCard2" layout="@layout/item_step_card"/>
+                <include android:id="@+id/stepCard3" layout="@layout/item_step_card"/>
+
+            </LinearLayout>
+
+            <!-- CTA -->
+            <Button
+                android:id="@+id/btnEncontrarPontos"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:background="@drawable/gradient_cta_button"
+                android:text="Encontrar pontos de coleta"
+                android:textColor="@color/white"
+                android:textSize="14.5sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+</LinearLayout>

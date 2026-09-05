@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">EcoVault</string>
+
+    <!-- TopBar -->
+    <string name="logo_eco">Eco</string>
+    <string name="logo_vault">Vault</string>
+
+    <!-- Home -->
+    <string name="ola_usuario">Olá, %1$s 👋</string>
+    <string name="usuario_padrao">usuário</string>
+    <string name="entrar">Entrar</string>
+
+    <!-- PointsBar -->
+    <string name="eco_saldo">ECOSALDO</string>
+    <string name="pts">pts</string>
+    <string name="equivalente_parceiros">≈ R$ 12,40 em parceiros</string>
+    <string name="streak_semanas">🔥 3 semanas</string>
+    <string name="nivel_atual">Eco-Herói · Nível 4</string>
+    <string name="proximo_nivel">65%% → Guardião</string>
+
+    <!-- SearchBox -->
+    <string name="search_titulo">O que você quer descartar hoje?</string>
+    <string name="search_hint">Ex: pilha AA, iPhone 7, lâmpada…</string>
+    <string name="buscar">Buscar</string>
+
+    <!-- ColetaBanner -->
+    <string name="coleta_titulo">Agendar coleta em casa</string>
+    <string name="coleta_descricao">TV velha, computador, geladeira? A gente vai até você.</string>
+    <string name="coleta_badge">NOVO · Grátis acima de 500pts</string>
+
+    <!-- SectionHeader -->
+    <string name="categorias">Categorias</string>
+    <string name="ver_todas">Ver todas →</string>
+    <string name="guia_descarte">Guia de Descarte</string>
+    <string name="ver_tudo">Ver tudo →</string>
+
+    <!-- CategoryPills -->
+    <string name="cat_pilhas">Pilhas</string>
+    <string name="cat_lampadas">Lâmpadas</string>
+    <string name="cat_smartphones">Smartphones</string>
+    <string name="cat_cabos">Cabos</string>
+    <string name="cat_eletronicos">Eletrônicos</string>
+
+    <!-- GuideCard -->
+    <string name="guide1_titulo">Nunca quebre lâmpadas fluorescentes</string>
+    <string name="guide1_desc">Mercúrio tóxico é liberado no ar. Veja o descarte seguro.</string>
+    <string name="guide2_titulo">Bateria inchada no celular?</string>
+    <string name="guide2_desc">Risco real de incêndio. Como remover e descartar com segurança.</string>
+    <string name="guide3_titulo">Apague seus dados antes de reciclar</string>
+    <string name="guide3_desc">Passo a passo para iPhone e Android antes do descarte.</string>
+
+    <!-- BottomNav -->
+    <string name="nav_inicio">Início</string>
+    <string name="nav_pontos">Pontos</string>
+    <string name="nav_coleta">Coleta</string>
+    <string name="nav_guia">Guia</string>
+    <string name="nav_perfil">Perfil</string>
+
+    <!-- Guia completo -->
+    <string name="guia_titulo_completo">Guia Completo de Descarte</string>
+    <string name="guia_subtitulo">Saiba como descartar corretamente cada tipo de material eletrônico. Proteja o meio ambiente e ganhe pontos por cada descarte responsável.</string>
+    <string name="guia_sabia_que_label">Sabia que?</string>
+    <string name="guia_sabia_que_texto">O Brasil descarta mais de 2 milhões de toneladas de lixo eletrônico por ano, mas apenas 3%% é reciclado corretamente. Faça parte da mudança!</string>
+    <string name="categorias_materiais">Categorias de Materiais</string>
+    <string name="dicas_seguranca">Dicas de Segurança</string>
+    <string name="passos_titulo">Como Descartar em 3 Passos</string>
+    <string name="btn_encontrar_pontos">Encontrar pontos de coleta</string>
+
+    <!-- Categorias -->
+    <string name="cat1_titulo">Pilhas e Baterias</string>
+    <string name="cat1_desc">Contêm metais pesados como cádmio, chumbo e mercúrio. Nunca descarte no lixo comum — podem contaminar o solo e a água.</string>
+    <string name="cat2_titulo">Lâmpadas</string>
+    <string name="cat2_desc">Lâmpadas fluorescentes contêm mercúrio. Quebrá-las libera vapores tóxicos. LEDs e incandescentes são menos perigosas, mas devem ser recicladas.</string>
+    <string name="cat3_titulo">Smartphones e Tablets</string>
+    <string name="cat3_desc">Possuem baterias de lítio, metais raros e componentes que podem ser reaproveitados. Apague seus dados antes de entregar para reciclagem.</string>
+    <string name="cat4_titulo">TVs e Monitores</string>
+    <string name="cat4_desc">Monitores CRT contêm chumbo. TVs de LCD possuem mercúrio na retroiluminação. São volumosos e requerem logística especial.</string>
+    <string name="cat5_titulo">Computadores e Periféricos</string>
+    <string name="cat5_desc">Placas-mãe, processadores e memórias contêm ouro, prata e paládio. Discos rígidos guardam dados pessoais — destrua antes de descartar.</string>
+    <string name="cat6_titulo">Impressoras e Cartuchos</string>
+    <string name="cat6_desc">Cartuchos de tinta e toner contêm substâncias químicas nocivas. Muitas fabricantes possuem programas de recolhimento.</string>
+
+    <!-- Dica extra 4, 5, 6 (as 3 primeiras já existem: guide1/2/3) -->
+    <string name="dica4_titulo">Não incinere eletrônicos</string>
+    <string name="dica4_desc">A queima de componentes eletrônicos libera dioxinas, furanos e metais pesados no ar. Isso causa danos à saúde e ao meio ambiente.</string>
+    <string name="dica5_titulo">Cabos e carregadores: não jogue no lixo</string>
+    <string name="dica5_desc">Cabos possuem cobre e PVC. Podem ser reciclados separadamente. Acumule em uma sacola e leve ao ponto de coleta.</string>
+    <string name="dica6_titulo">Prolongue a vida útil do eletrônico</string>
+    <string name="dica6_desc">Antes de descartar, considere doar, vender ou reparar. Muitos equipamentos ainda têm vida útil e podem ajudar outras pessoas.</string>
+
+    <!-- Passos -->
+    <string name="passo1_titulo">Separe o material</string>
+    <string name="passo1_desc">Identifique o tipo de eletrônico e prepare para o descarte. Remova dados pessoais de celulares e computadores.</string>
+    <string name="passo2_titulo">Encontre um ponto de coleta</string>
+    <string name="passo2_desc">Use o mapa do EcoVault para localizar o ponto mais próximo que aceita o seu tipo de material.</string>
+    <string name="passo3_titulo">Registre e ganhe pontos</string>
+    <string name="passo3_desc">Entregue o material no ponto de coleta e registre o descarte no app para acumular EcoSaldo.</string>
+
+
+    <!-- Guide detail bodies -->
+    <string name="guide1_corpo">"As lâmpadas fluorescentes (tubulares ou compactas) contêm uma pequena quantidade de mercúrio, um metal pesado altamente tóxico. Quando o vidro se quebra, o mercúrio é liberado no ar em forma de vapor, podendo ser inalado e causar danos ao sistema nervoso, rins e pulmões.
+
+Como descartar com segurança:
+
+1. Nunca jogue no lixo comum. O vidro quebrado libera mercúrio no meio ambiente e pode contaminar o solo e a água.
+
+2. Transporte com cuidado. Mantenha a lâmpada na embalagem original ou envolva em papel/plástico para evitar quebras durante o transporte até o ponto de coleta.
+
+3. Leve a um ponto de coleta EcoVault. Use o mapa de pontos do app para encontrar o local mais próximo que aceita esse tipo de resíduo.
+
+4. Em caso de quebra acidental. Ventile o ambiente por pelo menos 15 minutos, não varra os fragmentos com aspirador (isso espalha o vapor), use luvas e recolha os pedaços com papel úmido, descartando tudo em um saco plástico fechado.
+
+Ao reciclar corretamente, você evita a contaminação do meio ambiente e ainda ganha pontos no seu EcoSaldo."</string>
+
+    <string name="guide2_corpo">"Uma bateria de lítio inchada é um sinal de alerta sério. O inchaço indica que uma reação química interna está gerando gases, e isso pode evoluir para superaquecimento, vazamento de substâncias corrosivas ou até incêndio.
+
+Sinais de que a bateria está inchada:
+
+- A tela do celular está se soltando ou levantando nas bordas
+- A parte de trás do aparelho está estufada ou arredondada
+- O aparelho esquenta muito mesmo em uso leve
+- Dificuldade para o celular ficar apoiado em superfícies planas
+
+O que fazer:
+
+1. Pare de usar o aparelho imediatamente. Não tente carregar, forçar o uso ou consertar por conta própria.
+
+2. Não fure, aperte ou tente remover a bateria sozinho. Isso pode causar vazamento de substâncias tóxicas ou até combustão.
+
+3. Armazene em local seguro e ventilado. Evite deixar perto de materiais inflamáveis ou em locais muito quentes até o descarte.
+
+4. Leve a um ponto de coleta especializado. Baterias infladas precisam de manuseio profissional — use o mapa do app para localizar um ponto EcoVault que aceite eletrônicos com bateria.
+
+Nunca descarte no lixo comum: baterias de lítio podem pegar fogo mesmo dentro de caminhões de lixo."</string>
+
+    <string name="guide3_corpo">"Antes de reciclar ou vender um celular, é essencial apagar todos os seus dados pessoais. Um simples \"restaurar de fábrica\" às vezes não é suficiente para impedir a recuperação de fotos, senhas e informações bancárias.
+
+Para Android:
+
+1. Faça backup dos seus dados (fotos, contatos, arquivos) na nuvem ou em outro dispositivo.
+
+2. Remova contas vinculadas. Vá em Configurações → Contas e remova sua conta Google e outras contas antes de resetar.
+
+3. Desative o bloqueio de tela (PIN, senha ou padrão) temporariamente.
+
+4. Vá em Configurações → Sistema → Redefinição → Apagar todos os dados (restauração de fábrica).
+
+5. Remova o cartão SIM e o cartão de memória, se houver.
+
+Para iPhone:
+
+1. Faça backup no iCloud ou iTunes/Finder.
+
+2. Saia da sua conta Apple ID em Ajustes → [seu nome] → Sair, o que desativa automaticamente o Buscar iPhone.
+
+3. Vá em Ajustes → Geral → Transferir ou Redefinir iPhone → Apagar Conteúdo e Ajustes.
+
+4. Confirme com sua senha e aguarde a limpeza completa ser concluída.
+
+Depois de apagados os dados, seu aparelho está pronto para ser reciclado com segurança, sem risco de vazamento de informações pessoais."</string>
+    <string name="dica4_corpo">"A queima de componentes eletrônicos é uma das formas mais perigosas de descarte incorreto. Quando plásticos, placas de circuito e cabos são incinerados, liberam substâncias extremamente tóxicas no ar.
+
+Por que isso é tão perigoso:
+
+- Dioxinas e furanos: compostos cancerígenos liberados na queima de plásticos clorados, presentes em muitos revestimentos de cabos e carcaças.
+
+- Metais pesados vaporizados: chumbo, cádmio e mercúrio presentes nos componentes se espalham pelo ar em partículas finas, facilmente inaladas.
+
+- Contaminação do solo e água: as cinzas resultantes carregam esses metais, que podem infiltrar no solo e atingir lençóis freáticos.
+
+O que fazer em vez de queimar:
+
+1. Nunca incinere lixo eletrônico, mesmo em pequena quantidade ou "só para se livrar rápido".
+
+2. Separe os materiais por tipo (plásticos, metais, baterias) sempre que possível.
+
+3. Leve a um ponto de coleta EcoVault, onde o processamento é feito com equipamentos adequados que evitam a liberação dessas substâncias.
+
+4. Denuncie queimas irregulares. Se você presenciar descarte por incineração em terrenos baldios ou lixões, isso pode ser reportado aos órgãos ambientais locais.
+
+Descartar corretamente evita danos respiratórios, contaminação ambiental de longo prazo e ainda garante que materiais recicláveis sejam reaproveitados."</string>
+
+    <string name="dica5_corpo">"Cabos, carregadores e fios em geral costumam ser esquecidos na hora da reciclagem, mas eles têm alto valor de reaproveitamento e não devem ir para o lixo comum.
+
+Do que são feitos:
+
+- Núcleo de cobre: excelente condutor, um dos metais mais reciclados do mundo e com alto valor de revenda para a indústria.
+
+- Revestimento de PVC: plástico que, se descartado incorretamente, demora décadas para se decompor e pode liberar substâncias tóxicas se queimado.
+
+- Conectores metálicos: muitas vezes contêm pequenas quantidades de ouro ou prata nos contatos.
+
+Como descartar corretamente:
+
+1. Separe por tipo, se possível. Cabos de força, cabos USB, fones e carregadores podem ser acumulados juntos, mas evite misturar com outros tipos de lixo eletrônico maiores.
+
+2. Não corte ou queime os cabos para "extrair o cobre" por conta própria — isso é perigoso e o processo correto de reciclagem já faz essa separação com segurança.
+
+3. Acumule em uma sacola ou caixa até ter uma quantidade razoável, e leve a um ponto de coleta EcoVault.
+
+4. Cabos de aparelhos que ainda funcionam podem ser doados. Se o carregador ainda funciona mas o aparelho quebrou, considere doar separadamente.
+
+Reciclar cabos corretamente evita a extração de mais cobre virgem (processo que gera grande impacto ambiental) e mantém esse material circulando na economia."</string>
+
+    <string name="dica6_corpo">"Antes de descartar qualquer eletrônico, vale a pena parar e pensar: esse aparelho realmente não serve mais para nada? Prolongar a vida útil de um equipamento é a forma mais sustentável de lidar com eletrônicos — melhor até do que reciclar.
+
+Opções antes do descarte:
+
+1. Reparo: muitos problemas comuns (bateria fraca, tela trincada, lentidão) têm conserto acessível. Uma assistência técnica pode dar uma sobrevida de anos ao aparelho.
+
+2. Doação: celulares, notebooks e tablets antigos ainda são úteis para pessoas com menos acesso à tecnologia. Escolas, ONGs e projetos sociais costumam aceitar doações de eletrônicos funcionais.
+
+3. Venda ou troca: plataformas de compra e venda de usados dão uma segunda vida ao aparelho com outro dono, além de gerar uma renda extra para você.
+
+4. Reaproveitamento de peças: componentes de aparelhos quebrados (memória, tela, bateria) às vezes podem ser aproveitados em outros reparos.
+
+Quando reciclar é o certo:
+
+Se o aparelho realmente não tem mais conserto, não pode ser doado nem vendido, aí sim o descarte para reciclagem é o caminho correto — e ainda garante pontos no seu EcoSaldo.
+
+Pensar antes de descartar reduz a quantidade de lixo eletrônico gerado e estende o ciclo de vida útil dos recursos naturais usados para fabricar esses aparelhos."</string>
+</resources>
