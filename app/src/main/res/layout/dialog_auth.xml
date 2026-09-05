@@ -1,0 +1,263 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/dialog_bg">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingBottom="8dp">
+
+            <TextView
+                android:id="@+id/txtDialogTitulo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Bem-vindo de volta"
+                android:textColor="@color/foreground"
+                android:textSize="18sp"
+                android:textStyle="bold"/>
+
+            <ImageButton
+                android:id="@+id/btnFecharDialog"
+                android:layout_width="32dp"
+                android:layout_height="32dp"
+                android:layout_gravity="end|top"
+                android:layout_marginEnd="12dp"
+                android:background="?attr/selectableItemBackgroundBorderless"
+                android:src="@drawable/ic_close"
+                app:tint="@color/muted_foreground"/>
+
+        </FrameLayout>
+
+        <!-- Tabs -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:background="@drawable/tab_bg_selector"
+            android:padding="4dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp">
+
+            <TextView
+                android:id="@+id/tabEntrar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/tab_active_bg"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="Entrar"
+                android:textColor="@color/primary"
+                android:textSize="13.5sp"
+                android:textStyle="bold"/>
+
+            <TextView
+                android:id="@+id/tabCadastrar"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:paddingTop="8dp"
+                android:paddingBottom="8dp"
+                android:text="Cadastrar"
+                android:textColor="@color/muted_foreground"
+                android:textSize="13.5sp"/>
+
+        </LinearLayout>
+
+        <!-- FORM LOGIN -->
+        <LinearLayout
+            android:id="@+id/formLogin"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="24dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EMAIL"
+                android:textColor="@color/muted_foreground"
+                android:textSize="10.5sp"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="6dp"/>
+
+            <EditText
+                android:id="@+id/edtLoginEmail"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/input_bg"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:hint="seu@email.com"
+                android:textColorHint="@color/muted_foreground"
+                android:textColor="@color/foreground"
+                android:textSize="13.5sp"
+                android:inputType="textEmailAddress"
+                android:layout_marginBottom="14dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SENHA"
+                android:textColor="@color/muted_foreground"
+                android:textSize="10.5sp"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="6dp"/>
+
+            <EditText
+                android:id="@+id/edtLoginSenha"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/input_bg"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:hint="••••••"
+                android:textColorHint="@color/muted_foreground"
+                android:textColor="@color/foreground"
+                android:textSize="13.5sp"
+                android:inputType="textPassword"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/txtErroLogin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/destructive"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btnLogin"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/gradient_cta_button"
+                android:text="Entrar"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+        <!-- FORM CADASTRO -->
+        <LinearLayout
+            android:id="@+id/formCadastro"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingStart="24dp"
+            android:paddingEnd="24dp"
+            android:paddingBottom="24dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="NOME COMPLETO"
+                android:textColor="@color/muted_foreground"
+                android:textSize="10.5sp"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="6dp"/>
+
+            <EditText
+                android:id="@+id/edtCadastroNome"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/input_bg"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:hint="Seu nome"
+                android:textColorHint="@color/muted_foreground"
+                android:textColor="@color/foreground"
+                android:textSize="13.5sp"
+                android:inputType="textPersonName"
+                android:layout_marginBottom="14dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="EMAIL"
+                android:textColor="@color/muted_foreground"
+                android:textSize="10.5sp"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="6dp"/>
+
+            <EditText
+                android:id="@+id/edtCadastroEmail"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/input_bg"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:hint="seu@email.com"
+                android:textColorHint="@color/muted_foreground"
+                android:textColor="@color/foreground"
+                android:textSize="13.5sp"
+                android:inputType="textEmailAddress"
+                android:layout_marginBottom="14dp"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="SENHA"
+                android:textColor="@color/muted_foreground"
+                android:textSize="10.5sp"
+                android:letterSpacing="0.05"
+                android:layout_marginBottom="6dp"/>
+
+            <EditText
+                android:id="@+id/edtCadastroSenha"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/input_bg"
+                android:paddingStart="14dp"
+                android:paddingEnd="14dp"
+                android:hint="Mínimo 6 caracteres"
+                android:textColorHint="@color/muted_foreground"
+                android:textColor="@color/foreground"
+                android:textSize="13.5sp"
+                android:inputType="textPassword"
+                android:layout_marginBottom="10dp"/>
+
+            <TextView
+                android:id="@+id/txtErroCadastro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:textColor="@color/destructive"
+                android:textSize="12sp"
+                android:visibility="gone"
+                android:layout_marginBottom="10dp"/>
+
+            <Button
+                android:id="@+id/btnCadastrar"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:background="@drawable/gradient_cta_button"
+                android:text="Criar conta"
+                android:textColor="@color/white"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textAllCaps="false"/>
+
+        </LinearLayout>
+
+    </LinearLayout>
+</ScrollView>

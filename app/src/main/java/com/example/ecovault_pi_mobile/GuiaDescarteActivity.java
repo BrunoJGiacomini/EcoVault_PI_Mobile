@@ -35,9 +35,7 @@ public class GuiaDescarteActivity extends AppCompatActivity {
         setupPassos();
 
         Button btnEncontrarPontos = findViewById(R.id.btnEncontrarPontos);
-        btnEncontrarPontos.setOnClickListener(v -> {
-            // startActivity(new Intent(this, PontosActivity.class));
-        });
+        btnEncontrarPontos.setOnClickListener(v -> startActivity(new Intent(this, PontosActivity.class)));
     }
 
     private void setupCategorias() {

@@ -1,7 +1,16 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
     <style name="Base.Theme.EcoVault_PI_Mobile" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your dark theme here. -->
-        <!-- <item name="colorPrimary">@color/my_dark_primary</item> -->
+        <!-- Customize your light theme here. -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="colorPrimaryVariant">@color/mint_deep</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorSecondary">@color/emerald</item>
+        <item name="colorSecondaryVariant">@color/mint_deep</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="android:statusBarColor">@color/background</item>
+        <item name="android:windowBackground">@color/background</item>
     </style>
+
+    <style name="Theme.EcoVault_PI_Mobile" parent="Base.Theme.EcoVault_PI_Mobile" />
 </resources>

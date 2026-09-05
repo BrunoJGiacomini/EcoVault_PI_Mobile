@@ -2,7 +2,9 @@ package com.example.ecovault_pi_mobile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -18,6 +20,8 @@ import android.view.View;
 
 import com.example.ecovault_pi_mobile.adapter.CategoryPillsAdapter;
 import com.example.ecovault_pi_mobile.model.CategoryItem;
+import com.example.ecovault_pi_mobile.utils.ThemeHelper;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +41,53 @@ public class MainActivity extends AppCompatActivity {
 
         setupCategoryPills();
         setupGuideCards();
+
+        BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
+        bottomNav.setOnItemSelectedListener(item -> {
+            int itemId = item.getItemId();
+
+            if (itemId == R.id.nav_home) {
+                return true; // já estamos na Home
+            } else if (itemId == R.id.nav_pontos) {
+                startActivity(new Intent(this, PontosActivity.class));
+                return true;
+            } else if (itemId == R.id.nav_agendar) {
+                startActivity(new Intent(this, AgendarColetaActivity.class));
+                return true;
+            } else if (itemId == R.id.nav_guia) {
+                startActivity(new Intent(this, GuiaDescarteActivity.class));
+                return true;
+            }
+            else if (itemId == R.id.nav_perfil) {
+            startActivity(new Intent(this, PerfilActivity.class));
+            return true;
+        }
+            return false;
+        });
+
+        Button btnBuscarHome = findViewById(R.id.btnBuscar);
+        btnBuscarHome.setOnClickListener(v -> startActivity(new Intent(this, PontosActivity.class)));
+
+        View coletaBanner = findViewById(R.id.coletaBannerInclude);
+        coletaBanner.setOnClickListener(v -> startActivity(new Intent(this, AgendarColetaActivity.class)));
+
+        View btnEntrar = findViewById(R.id.btnEntrarHome);
+        if (btnEntrar != null) {
+            btnEntrar.setOnClickListener(v -> {
+                AuthDialogFragment authDialog = new AuthDialogFragment();
+                authDialog.setAuthListener((nome, email) -> {
+
+                });
+                authDialog.show(getSupportFragmentManager(), "auth_dialog");
+            });
+        }
+
+
+        ImageButton btnToggleTheme = findViewById(R.id.btnToggleTheme);
+        btnToggleTheme.setOnClickListener(v -> {
+            ThemeHelper.toggleTheme(this);
+            recreate(); // reconstrói a Activity com o novo tema aplicado
+        });
 
         TextView txtVerGuia = findViewById(R.id.txtVerGuia);
         txtVerGuia.setOnClickListener(v -> startActivity(new Intent(this, GuiaDescarteActivity.class)));

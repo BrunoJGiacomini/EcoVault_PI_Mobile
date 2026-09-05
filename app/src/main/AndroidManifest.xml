@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <application
+        android:name=".EcoVaultApplication"
         android:allowBackup="true"
         android:dataExtractionRules="@xml/data_extraction_rules"
         android:fullBackupContent="@xml/backup_rules"
@@ -20,12 +21,28 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".GuideDetailActivity" android:exported="false"/>
-        <activity android:name=".GuiaDescarteActivity" android:exported="false"/>
-        <activity android:name=".PontosActivity" android:exported="false"/>
-        <activity android:name=".PontoDetailActivity" android:exported="false"/>
-        <activity android:name=".ConfirmarDescarteActivity" android:exported="false"/>
-        <activity android:name=".SucessoActivity" android:exported="false"/>
+        <activity
+            android:name=".GuideDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".GuiaDescarteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PontosActivity"
+            android:exported="false" />
+        <activity
+            android:name=".PontoDetailActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ConfirmarDescarteActivity"
+            android:exported="false" />
+        <activity
+            android:name=".SucessoActivity"
+            android:exported="false" />
+        <activity
+            android:name=".AgendarColetaActivity"
+            android:exported="false" />
+        <activity android:name=".PerfilActivity" android:exported="false"/>
     </application>
 
 </manifest>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- Cores base (invertidas pro modo escuro) -->
+    <color name="background">#0E1610</color>
+    <color name="foreground">#F0F4F2</color>
+    <color name="card">#161F19</color>
+    <color name="muted_bg">#1E2A22</color>
+    <color name="border">#2A362F</color>
+    <color name="muted_foreground">#8A968E</color>
+
+    <!-- Primárias (verde, mais claro/vibrante no escuro) -->
+    <color name="primary">#22C55E</color>
+    <color name="mint_deep">#17A34A</color>
+    <color name="emerald">#0FA05A</color>
+    <color name="mint_glow2">#3322C55E</color>
+
+    <!-- Status -->
+    <color name="amber">#FBBF24</color>
+    <color name="destructive">#F87171</color>
+    <color name="info_blue">#60A5FA</color>
+    <color name="purple">#A78BFA</color>
+    <color name="eco_blue">#60A5FA</color>
+    <color name="eco_blue_bg">#1A60A5FA</color>
+    <color name="purple_bg">#1AA78BFA</color>
+    <color name="chip_bg">#1AFFFFFF</color>
+
+    <!-- Coleta banner -->
+    <color name="coleta_bg_start">#16213D</color>
+    <color name="coleta_bg_end">#111829</color>
+    <color name="coleta_border">#3893C5FD</color>
+    <color name="coleta_badge_bg">#2693C5FD</color>
+    <color name="coleta_badge_text">#93C5FD</color>
+    <color name="coleta_icon_bg">#1F93C5FD</color>
+
+    <!-- Status badges -->
+    <color name="status_success_bg">#1A22C55E</color>
+    <color name="status_success_text">#4ADE80</color>
+    <color name="status_danger_bg">#1AF87171</color>
+    <color name="status_danger_text">#F87171</color>
+    <color name="status_info_bg">#1A60A5FA</color>
+    <color name="status_info_text">#93C5FD</color>
+
+    <color name="white">#FFFFFF</color>
+    <color name="transparent">#00000000</color>
+</resources>
