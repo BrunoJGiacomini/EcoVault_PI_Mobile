@@ -15,10 +15,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import com.example.ecovault_pi_mobile.database.UsuarioRepository;
+import com.example.ecovault_pi_mobile.database.entity.UsuarioEntity;
+
 public class AuthDialogFragment extends DialogFragment {
 
     public interface AuthListener {
-        void onAuthSuccess(String nome, String email);
+        void onAuthSuccess(UsuarioEntity usuario);
     }
 
     private AuthListener listener;
@@ -79,6 +82,15 @@ public class AuthDialogFragment extends DialogFragment {
         TextView txtErroLogin = dialog.findViewById(R.id.txtErroLogin);
         Button btnLogin = dialog.findViewById(R.id.btnLogin);
 
+        // CADASTRO
+        EditText edtCadastroNome = dialog.findViewById(R.id.edtCadastroNome);
+        EditText edtCadastroEmail = dialog.findViewById(R.id.edtCadastroEmail);
+        EditText edtCadastroSenha = dialog.findViewById(R.id.edtCadastroSenha);
+        TextView txtErroCadastro = dialog.findViewById(R.id.txtErroCadastro);
+        Button btnCadastrar = dialog.findViewById(R.id.btnCadastrar);
+
+        UsuarioRepository repository = new UsuarioRepository(requireContext());
+
         btnLogin.setOnClickListener(v -> {
             String email = edtLoginEmail.getText().toString().trim();
             String senha = edtLoginSenha.getText().toString().trim();
@@ -89,17 +101,20 @@ public class AuthDialogFragment extends DialogFragment {
                 return;
             }
 
-            // Aqui depois entra a chamada de API real (Retrofit) pra /auth/login
-            if (listener != null) listener.onAuthSuccess(email, email);
-            dismiss();
-        });
+            repository.login(email, senha, new UsuarioRepository.AuthCallback() {
+                @Override
+                public void onSucesso(UsuarioEntity usuario) {
+                    if (listener != null) listener.onAuthSuccess(usuario);
+                    dismiss();
+                }
 
-        // CADASTRO
-        EditText edtCadastroNome = dialog.findViewById(R.id.edtCadastroNome);
-        EditText edtCadastroEmail = dialog.findViewById(R.id.edtCadastroEmail);
-        EditText edtCadastroSenha = dialog.findViewById(R.id.edtCadastroSenha);
-        TextView txtErroCadastro = dialog.findViewById(R.id.txtErroCadastro);
-        Button btnCadastrar = dialog.findViewById(R.id.btnCadastrar);
+                @Override
+                public void onErro(String mensagem) {
+                    txtErroLogin.setText(mensagem);
+                    txtErroLogin.setVisibility(View.VISIBLE);
+                }
+            });
+        });
 
         btnCadastrar.setOnClickListener(v -> {
             String nome = edtCadastroNome.getText().toString().trim();
@@ -118,9 +133,19 @@ public class AuthDialogFragment extends DialogFragment {
                 return;
             }
 
-            // Aqui depois entra a chamada de API real (Retrofit) pra /auth/register
-            if (listener != null) listener.onAuthSuccess(nome, email);
-            dismiss();
+            repository.cadastrar(nome, email, senha, new UsuarioRepository.AuthCallback() {
+                @Override
+                public void onSucesso(UsuarioEntity usuario) {
+                    if (listener != null) listener.onAuthSuccess(usuario);
+                    dismiss();
+                }
+
+                @Override
+                public void onErro(String mensagem) {
+                    txtErroCadastro.setText(mensagem);
+                    txtErroCadastro.setVisibility(View.VISIBLE);
+                }
+            });
         });
     }
 }

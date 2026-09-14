@@ -20,6 +20,7 @@ import android.view.View;
 
 import com.example.ecovault_pi_mobile.adapter.CategoryPillsAdapter;
 import com.example.ecovault_pi_mobile.model.CategoryItem;
+import com.example.ecovault_pi_mobile.utils.SessaoUsuario;
 import com.example.ecovault_pi_mobile.utils.ThemeHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
@@ -41,6 +42,8 @@ public class MainActivity extends AppCompatActivity {
 
         setupCategoryPills();
         setupGuideCards();
+
+
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setOnItemSelectedListener(item -> {
@@ -75,11 +78,14 @@ public class MainActivity extends AppCompatActivity {
         if (btnEntrar != null) {
             btnEntrar.setOnClickListener(v -> {
                 AuthDialogFragment authDialog = new AuthDialogFragment();
-                authDialog.setAuthListener((nome, email) -> {
-
+                authDialog.setAuthListener(usuario -> {
+                    SessaoUsuario.salvar(this, usuario.getId(), usuario.getNome(), usuario.getEmail());
+                    atualizarSaudacao();
                 });
                 authDialog.show(getSupportFragmentManager(), "auth_dialog");
             });
+
+            atualizarSaudacao();
         }
 
 
@@ -171,5 +177,18 @@ public class MainActivity extends AppCompatActivity {
         imgIcon.setColorFilter(getColor(tintColorRes));
         txtTitle.setText(title);
         txtDesc.setText(desc);
+    }
+    private void atualizarSaudacao() {
+        TextView txtSaudacao = findViewById(R.id.txtSaudacao);
+        View btnEntrar = findViewById(R.id.btnEntrarHome);
+
+        if (SessaoUsuario.estaLogado(this)) {
+            String nome = SessaoUsuario.getNome(this);
+            txtSaudacao.setText("Olá, " + nome + " 👋");
+            btnEntrar.setVisibility(View.GONE);
+        } else {
+            txtSaudacao.setText("Olá, usuário 👋");
+            btnEntrar.setVisibility(View.VISIBLE);
+        }
     }
 }

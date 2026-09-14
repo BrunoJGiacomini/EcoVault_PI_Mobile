@@ -38,7 +38,32 @@ public class UsuarioRepository {
         this.mainHandler = new Handler(Looper.getMainLooper());
     }
 
+    public void cadastrar(String nome, String email, String senha, AuthCallback callback) {
+        executor.execute(() -> {
+            UsuarioEntity existente = usuarioDao.buscarPorEmail(email);
+            if (existente != null) {
+                mainHandler.post(() -> callback.onErro("Este email já está cadastrado."));
+                return;
+            }
 
+            UsuarioEntity novoUsuario = new UsuarioEntity(nome, email, senha);
+            long id = usuarioDao.inserir(novoUsuario);
+            novoUsuario.setId((int) id);
+
+            mainHandler.post(() -> callback.onSucesso(novoUsuario));
+        });
+    }
+
+    public void login(String email, String senha, AuthCallback callback) {
+        executor.execute(() -> {
+            UsuarioEntity usuario = usuarioDao.buscarPorEmail(email);
+            if (usuario == null || !usuario.getSenha().equals(senha)) {
+                mainHandler.post(() -> callback.onErro("Email ou senha incorretos."));
+                return;
+            }
+            mainHandler.post(() -> callback.onSucesso(usuario));
+        });
+    }
 
     public void registrarDescarte(int usuarioId, String itemLabel, String pontoColetaNome, int pontos) {
         executor.execute(() -> {

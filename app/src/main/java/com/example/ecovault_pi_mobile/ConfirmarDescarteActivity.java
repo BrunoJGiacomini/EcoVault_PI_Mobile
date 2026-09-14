@@ -13,8 +13,10 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.ecovault_pi_mobile.database.UsuarioRepository;
 import com.example.ecovault_pi_mobile.model.AcceptedItem;
 import com.example.ecovault_pi_mobile.model.CollectionPoint;
+import com.example.ecovault_pi_mobile.utils.SessaoUsuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -158,12 +160,22 @@ public class ConfirmarDescarteActivity extends AppCompatActivity {
             return;
         }
 
-        int totalPoints = 0;
-        for (AcceptedItem item : selecionados) {
-            totalPoints += item.getPointsPerDisposal();
+        if (!SessaoUsuario.estaLogado(this)) {
+            txtErrorMsg.setText("Cadastre-se ou faça login para registrar o descarte.");
+            txtErrorMsg.setVisibility(View.VISIBLE);
+            return;
         }
 
-        // Aqui depois entra a chamada real de API (Retrofit) pra registrar o descarte
+        int usuarioId = SessaoUsuario.getUsuarioId(this);
+        int totalPoints = 0;
+
+        UsuarioRepository repository = new UsuarioRepository(this);
+
+        for (AcceptedItem item : selecionados) {
+            totalPoints += item.getPointsPerDisposal();
+            repository.registrarDescarte(usuarioId, item.getLabel(), currentPoint.getName(), item.getPointsPerDisposal());
+        }
+
         SucessoActivity.start(this, totalPoints, totalPoints, 65, false);
     }
 }
