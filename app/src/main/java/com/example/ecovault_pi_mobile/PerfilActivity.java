@@ -2,8 +2,10 @@ package com.example.ecovault_pi_mobile;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -11,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.ecovault_pi_mobile.adapter.BadgeAdapter;
 import com.example.ecovault_pi_mobile.model.Badge;
+import com.example.ecovault_pi_mobile.utils.SessaoUsuario;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,17 +30,27 @@ public class PerfilActivity extends AppCompatActivity {
 
         carregarUsuario();
         setupBadges();
+
+        Button btnLogout = findViewById(R.id.btnLogout);
+        btnLogout.setOnClickListener(v -> {
+            SessaoUsuario.limpar(this);
+            Toast.makeText(this, "Sessão encerrada.", Toast.LENGTH_SHORT).show();
+            finish();
+        });
     }
 
     private void carregarUsuario() {
-        // MOCK - depois substituir por dados reais (SharedPreferences/API/Room)
-        String nomeUsuario = "Maria Ramos";
-
         TextView txtNome = findViewById(R.id.txtNomeUsuario);
         TextView txtAvatar = findViewById(R.id.txtAvatarIniciais);
 
-        txtNome.setText(nomeUsuario);
-        txtAvatar.setText(gerarIniciais(nomeUsuario));
+        if (SessaoUsuario.estaLogado(this)) {
+            String nomeUsuario = SessaoUsuario.getNome(this);
+            txtNome.setText(nomeUsuario);
+            txtAvatar.setText(gerarIniciais(nomeUsuario));
+        } else {
+            txtNome.setText("Visitante");
+            txtAvatar.setText("??");
+        }
     }
 
     private String gerarIniciais(String nomeCompleto) {

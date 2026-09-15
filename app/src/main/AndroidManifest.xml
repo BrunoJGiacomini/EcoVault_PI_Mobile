@@ -12,37 +12,29 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.EcoVault_PI_Mobile">
+
         <activity
-            android:name=".MainActivity"
+            android:name=".SplashActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name=".GuideDetailActivity"
+            android:name=".MainActivity"
             android:exported="false" />
-        <activity
-            android:name=".GuiaDescarteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PontosActivity"
-            android:exported="false" />
-        <activity
-            android:name=".PontoDetailActivity"
-            android:exported="false" />
-        <activity
-            android:name=".ConfirmarDescarteActivity"
-            android:exported="false" />
-        <activity
-            android:name=".SucessoActivity"
-            android:exported="false" />
-        <activity
-            android:name=".AgendarColetaActivity"
-            android:exported="false" />
+
+        <activity android:name=".GuideDetailActivity" android:exported="false" />
+        <activity android:name=".GuiaDescarteActivity" android:exported="false" />
+        <activity android:name=".PontosActivity" android:exported="false" />
+        <activity android:name=".PontoDetailActivity" android:exported="false" />
+        <activity android:name=".ConfirmarDescarteActivity" android:exported="false" />
+        <activity android:name=".SucessoActivity" android:exported="false" />
+        <activity android:name=".AgendarColetaActivity" android:exported="false" />
         <activity android:name=".PerfilActivity" android:exported="false"/>
+
     </application>
 
 </manifest>

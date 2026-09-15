@@ -223,6 +223,18 @@
                     android:orientation="horizontal"
                     android:clipToPadding="false"/>
 
+                <Button
+                    android:id="@+id/btnLogout"
+                    android:layout_width="match_parent"
+                    android:layout_height="48dp"
+                    android:layout_marginTop="20dp"
+                    android:background="@drawable/input_bg"
+                    android:text="Sair da conta"
+                    android:textColor="@color/destructive"
+                    android:textSize="13.5sp"
+                    android:textStyle="bold"
+                    android:textAllCaps="false"/>
+
             </LinearLayout>
 
         </LinearLayout>

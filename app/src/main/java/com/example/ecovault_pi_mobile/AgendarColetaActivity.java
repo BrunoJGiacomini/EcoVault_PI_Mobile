@@ -12,8 +12,12 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.ecovault_pi_mobile.database.UsuarioRepository;
+import com.example.ecovault_pi_mobile.utils.SessaoUsuario;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -59,8 +63,26 @@ public class AgendarColetaActivity extends AppCompatActivity {
 
         Button btnConfirmar = findViewById(R.id.btnConfirmarAgendamento);
         btnConfirmar.setOnClickListener(v -> {
-            // Aqui depois entra a chamada de API pra registrar o agendamento
-            SucessoActivity.start(this, calcularTotalPontos(), calcularTotalPontos(), 65, false);
+            if (!SessaoUsuario.estaLogado(this)) {
+                Toast.makeText(this, "Faça login para agendar uma coleta.", Toast.LENGTH_SHORT).show();
+                return;
+            }
+
+            int usuarioId = SessaoUsuario.getUsuarioId(this);
+            int totalPontos = calcularTotalPontos();
+
+            UsuarioRepository repository = new UsuarioRepository(this);
+
+            for (Map.Entry<String, Boolean> entry : itensSelecionados.entrySet()) {
+                if (Boolean.TRUE.equals(entry.getValue())) {
+                    Integer pontosItem = pontosPorItem.get(entry.getKey());
+                    if (pontosItem != null) {
+                        repository.registrarDescarte(usuarioId, entry.getKey(), "Coleta em Casa", pontosItem * 2);
+                    }
+                }
+            }
+
+            SucessoActivity.start(this, totalPontos, totalPontos, 65, false);
         });
     }
 
