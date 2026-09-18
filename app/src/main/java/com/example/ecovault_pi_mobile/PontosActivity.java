@@ -1,9 +1,16 @@
 package com.example.ecovault_pi_mobile;
 
+import android.Manifest;
 import android.content.Intent;
+import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.ImageButton;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
+import androidx.activity.result.ActivityResultLauncher;
+import androidx.activity.result.contract.ActivityResultContracts;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -11,22 +18,88 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ecovault_pi_mobile.adapter.PointCardAdapter;
 import com.example.ecovault_pi_mobile.model.AcceptedItem;
 import com.example.ecovault_pi_mobile.model.CollectionPoint;
+import com.example.ecovault_pi_mobile.utils.LocalizacaoHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 public class PontosActivity extends AppCompatActivity {
+
+    private LocalizacaoHelper localizacaoHelper;
+    private LinearLayout bannerAviso;
+    private TextView txtMensagemAviso;
+
+    private final ActivityResultLauncher<String[]> solicitadorPermissao =
+            registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
+                boolean concedida = false;
+                for (Map.Entry<String, Boolean> entry : result.entrySet()) {
+                    if (entry.getValue()) {
+                        concedida = true;
+                        break;
+                    }
+                }
+
+                if (concedida) {
+                    iniciarBuscaLocalizacao();
+                } else {
+                    mostrarAvisoLocalizacao("Ative a localização para ver a distância");
+                }
+            });
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pontos);
 
+        localizacaoHelper = new LocalizacaoHelper(this);
+        bannerAviso = findViewById(R.id.bannerAvisoLocalizacao);
+        txtMensagemAviso = findViewById(R.id.txtMensagemAviso);
+
         ImageButton btnVoltar = findViewById(R.id.btnVoltarPontos);
         btnVoltar.setOnClickListener(v -> finish());
 
+        verificarPermissoesECarregar();
+    }
+
+    private void verificarPermissoesECarregar() {
+        if (localizacaoHelper.temPermissaoLocalizacao()) {
+            iniciarBuscaLocalizacao();
+        } else {
+            solicitadorPermissao.launch(new String[]{
+                    Manifest.permission.ACCESS_FINE_LOCATION,
+                    Manifest.permission.ACCESS_COARSE_LOCATION
+            });
+        }
         setupPontos();
+    }
+
+    private void iniciarBuscaLocalizacao() {
+        localizacaoHelper.obterUltimaLocalizacao(new LocalizacaoHelper.OnLocalizacaoResult() {
+            @Override
+            public void aoEncontrarLocalizacao(Location location) {
+                ocultarAvisoLocalizacao();
+            }
+
+            @Override
+            public void aoFalharLocalizacao() {
+                mostrarAvisoLocalizacao("Não foi possível obter sua localização agora");
+            }
+        });
+    }
+
+    private void mostrarAvisoLocalizacao(String mensagem) {
+        if (bannerAviso != null && txtMensagemAviso != null) {
+            txtMensagemAviso.setText(mensagem);
+            bannerAviso.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void ocultarAvisoLocalizacao() {
+        if (bannerAviso != null) {
+            bannerAviso.setVisibility(View.GONE);
+        }
     }
 
     private void setupPontos() {

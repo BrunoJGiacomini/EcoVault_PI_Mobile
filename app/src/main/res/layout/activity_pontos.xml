@@ -39,6 +39,36 @@
 
     <include layout="@layout/search_box"/>
 
+    <LinearLayout
+        android:id="@+id/bannerAvisoLocalizacao"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="12dp"
+        android:background="@drawable/banner_aviso_bg"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:padding="12dp"
+        android:visibility="gone">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:src="@drawable/ic_info"
+            app:tint="@color/status_info_text" />
+
+        <TextView
+            android:id="@+id/txtMensagemAviso"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
+            android:text="Ative a localização para ver a distância"
+            android:textColor="@color/status_info_text"
+            android:textSize="13sp" />
+
+    </LinearLayout>
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerFiltroCategorias"
         android:layout_width="match_parent"
