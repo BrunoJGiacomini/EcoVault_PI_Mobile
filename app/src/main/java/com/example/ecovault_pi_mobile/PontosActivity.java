@@ -112,7 +112,7 @@ public class PontosActivity extends AppCompatActivity {
                 Arrays.asList(
                         new AcceptedItem("item_celular", "Celular", 80, R.drawable.ic_smartphone),
                         new AcceptedItem("item_pilhas", "Pilhas", 30, R.drawable.ic_battery)
-                )));
+                ), -23.0911, -47.2185));
 
         pontos.add(new CollectionPoint(
                 "2", "Recicla Fácil", "Av. Brasil, 456 - Jardim América",
@@ -120,7 +120,15 @@ public class PontosActivity extends AppCompatActivity {
                 Arrays.asList(
                         new AcceptedItem("item_notebook", "Notebook", 120, R.drawable.ic_cpu),
                         new AcceptedItem("item_lampadas", "Lâmpadas", 20, R.drawable.ic_lightbulb)
-                )));
+                ), -23.0850, -47.2010));
+
+        pontos.add(new CollectionPoint(
+                "3", "Descarte Verde Vila Vitória", "Rua das Palmeiras, 789 - Vila Vitória",
+                "3.8km", "Aberto agora", true,
+                Arrays.asList(
+                        new AcceptedItem("item_impressora", "Impressora", 100, R.drawable.ic_printer),
+                        new AcceptedItem("item_tablet", "Tablet", 90, R.drawable.ic_tablet)
+                ), -23.1025, -47.2250));
 
         RecyclerView recycler = findViewById(R.id.recyclerPontos);
         recycler.setLayoutManager(new LinearLayoutManager(this));
