@@ -40,6 +40,7 @@ dependencies {
     implementation(libs.appcompat)
     implementation(libs.constraintlayout)
     implementation(libs.material)
+    implementation("com.google.android.gms:play-services-location:21.3.0")
     implementation("androidx.recyclerview:recyclerview:1.3.2")
     implementation ("androidx.room:room-runtime:2.6.1")
     annotationProcessor ("androidx.room:room-compiler:2.6.1")
