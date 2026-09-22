@@ -1,7 +1,6 @@
 package com.example.ecovault_pi_mobile;
 
 import android.Manifest;
-import android.content.Intent;
 import android.location.Location;
 import android.os.Bundle;
 import android.view.View;
@@ -22,6 +21,7 @@ import com.example.ecovault_pi_mobile.utils.LocalizacaoHelper;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -30,6 +30,9 @@ public class PontosActivity extends AppCompatActivity {
     private LocalizacaoHelper localizacaoHelper;
     private LinearLayout bannerAviso;
     private TextView txtMensagemAviso;
+
+    private List<CollectionPoint> listaPontos = new ArrayList<>();
+    private PointCardAdapter adaptadorPontos;
 
     private final ActivityResultLauncher<String[]> solicitadorPermissao =
             registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
@@ -60,6 +63,7 @@ public class PontosActivity extends AppCompatActivity {
         ImageButton btnVoltar = findViewById(R.id.btnVoltarPontos);
         btnVoltar.setOnClickListener(v -> finish());
 
+        configurarListaPontos();
         verificarPermissoesECarregar();
     }
 
@@ -72,13 +76,13 @@ public class PontosActivity extends AppCompatActivity {
                     Manifest.permission.ACCESS_COARSE_LOCATION
             });
         }
-        setupPontos();
     }
 
     private void iniciarBuscaLocalizacao() {
         localizacaoHelper.obterUltimaLocalizacao(new LocalizacaoHelper.OnLocalizacaoResult() {
             @Override
-            public void aoEncontrarLocalizacao(Location location) {
+            public void aoEncontrarLocalizacao(Location localizacao) {
+                processarLocalizacaoEOrdenarPontos(localizacao);
                 ocultarAvisoLocalizacao();
             }
 
@@ -102,8 +106,54 @@ public class PontosActivity extends AppCompatActivity {
         }
     }
 
-    private void setupPontos() {
-        // MOCK - depois substituímos por chamada de API real (Retrofit/Volley)
+    private void configurarListaPontos() {
+        listaPontos = obterPontosMock();
+
+        RecyclerView recycler = findViewById(R.id.recyclerPontos);
+        recycler.setLayoutManager(new LinearLayoutManager(this));
+        adaptadorPontos = new PointCardAdapter(this, listaPontos, ponto -> {
+            PontoDetailActivity.start(this, ponto);
+        });
+        recycler.setAdapter(adaptadorPontos);
+    }
+
+    private void processarLocalizacaoEOrdenarPontos(Location localizacaoUsuario) {
+        if (localizacaoUsuario == null || listaPontos == null || listaPontos.isEmpty()) {
+            return;
+        }
+
+        double latitudeUsuario = localizacaoUsuario.getLatitude();
+        double longitudeUsuario = localizacaoUsuario.getLongitude();
+
+        for (CollectionPoint ponto : listaPontos) {
+            float distanciaEmMetros = LocalizacaoHelper.calcularDistancia(
+                    latitudeUsuario,
+                    longitudeUsuario,
+                    ponto.getLatitude(),
+                    ponto.getLongitude()
+            );
+
+            String distanciaFormatada = LocalizacaoHelper.formatarDistancia(distanciaEmMetros);
+
+            ponto.setDistanciaEmMetros(distanciaEmMetros);
+            ponto.setDistanciaExibida(distanciaFormatada);
+        }
+
+        ordenarPontosPorDistancia();
+
+        if (adaptadorPontos != null) {
+            adaptadorPontos.notifyDataSetChanged();
+        }
+    }
+
+    private void ordenarPontosPorDistancia() {
+        if (listaPontos != null) {
+            Collections.sort(listaPontos, (ponto1, ponto2) ->
+                    Float.compare(ponto1.getDistanciaEmMetros(), ponto2.getDistanciaEmMetros()));
+        }
+    }
+
+    private List<CollectionPoint> obterPontosMock() {
         List<CollectionPoint> pontos = new ArrayList<>();
 
         pontos.add(new CollectionPoint(
@@ -130,10 +180,6 @@ public class PontosActivity extends AppCompatActivity {
                         new AcceptedItem("item_tablet", "Tablet", 90, R.drawable.ic_tablet)
                 ), -23.1025, -47.2250));
 
-        RecyclerView recycler = findViewById(R.id.recyclerPontos);
-        recycler.setLayoutManager(new LinearLayoutManager(this));
-        recycler.setAdapter(new PointCardAdapter(this, pontos, point -> {
-            PontoDetailActivity.start(this, point);
-        }));
+        return pontos;
     }
 }

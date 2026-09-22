@@ -47,7 +47,12 @@ public class PointCardAdapter extends RecyclerView.Adapter<PointCardAdapter.Poin
 
         holder.txtName.setText(point.getName());
         holder.txtAddress.setText(point.getAddress());
-        holder.txtDistance.setText(point.getDistance() + " de você");
+
+        if (point.getDistanciaExibida() != null && !point.getDistanciaExibida().isEmpty()) {
+            holder.txtDistance.setText(point.getDistanciaExibida() + " de você");
+        } else {
+            holder.txtDistance.setText("Ative a localização...");
+        }
 
         if (point.isOpen()) {
             holder.txtOpenStatus.setText(point.getOpenStatus() != null ? point.getOpenStatus() : "Aberto agora");
