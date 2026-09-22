@@ -157,28 +157,78 @@ public class PontosActivity extends AppCompatActivity {
         List<CollectionPoint> pontos = new ArrayList<>();
 
         pontos.add(new CollectionPoint(
-                "1", "EcoPonto Centro", "Rua das Flores, 123 - Centro",
-                "1.2km", "Aberto agora", true,
+                "1",
+                "Ecoponto de Inertes - Jardim João Pioli",
+                "Av. Manoel Ruz Peres, esq. Av. Artes e Ofícios - Jardim João Pioli",
+                "1.2km",
+                "Aberto das 07h às 19h",
+                true,
                 Arrays.asList(
-                        new AcceptedItem("item_celular", "Celular", 80, R.drawable.ic_smartphone),
-                        new AcceptedItem("item_pilhas", "Pilhas", 30, R.drawable.ic_battery)
-                ), -23.0911, -47.2185));
+                        new AcceptedItem("item_eletronicos", "Eletrônicos", 80, R.drawable.ic_cpu),
+                        new AcceptedItem("item_pilhas", "Pilhas e Baterias", 30, R.drawable.ic_battery),
+                        new AcceptedItem("item_entulho", "Entulho e Madeira", 50, R.drawable.ic_recycle),
+                        new AcceptedItem("item_reciclaveis", "Recicláveis", 40, R.drawable.ic_leaf)
+                ),
+                -23.0885, -47.2310
+        ));
 
         pontos.add(new CollectionPoint(
-                "2", "Recicla Fácil", "Av. Brasil, 456 - Jardim América",
-                "2.5km", "Fechado", false,
+                "2",
+                "Ecoponto Parque Ecológico",
+                "Av. Eng. Fábio Roberto Barnabé - em frente ao estacionamento do Parque Ecológico",
+                "2.5km",
+                "Aberto agora",
+                true,
                 Arrays.asList(
-                        new AcceptedItem("item_notebook", "Notebook", 120, R.drawable.ic_cpu),
-                        new AcceptedItem("item_lampadas", "Lâmpadas", 20, R.drawable.ic_lightbulb)
-                ), -23.0850, -47.2010));
+                        new AcceptedItem("item_vidro_metal", "Vidro e Metal", 40, R.drawable.ic_recycle),
+                        new AcceptedItem("item_papel_plastico", "Papel e Plástico", 30, R.drawable.ic_leaf),
+                        new AcceptedItem("item_oleo", "Óleo de Cozinha", 50, R.drawable.ic_plug)
+                ),
+                -23.0920, -47.2180
+        ));
 
         pontos.add(new CollectionPoint(
-                "3", "Descarte Verde Vila Vitória", "Rua das Palmeiras, 789 - Vila Vitória",
-                "3.8km", "Aberto agora", true,
+                "3",
+                "Ecoponto Cecap III",
+                "Av. Geraldo Hackmann, nº 776 - Cecap III",
+                "3.1km",
+                "Aberto agora",
+                true,
                 Arrays.asList(
-                        new AcceptedItem("item_impressora", "Impressora", 100, R.drawable.ic_printer),
-                        new AcceptedItem("item_tablet", "Tablet", 90, R.drawable.ic_tablet)
-                ), -23.1025, -47.2250));
+                        new AcceptedItem("item_vidro_metal", "Vidro e Metal", 40, R.drawable.ic_recycle),
+                        new AcceptedItem("item_papel_plastico", "Papel e Plástico", 30, R.drawable.ic_leaf)
+                ),
+                -23.0815, -47.2050
+        ));
+
+        pontos.add(new CollectionPoint(
+                "4",
+                "Ecoponto Jardim Umuarama",
+                "Rua Açaí, nº 136, esquina com Rua Guayi - Jardim Umuarama",
+                "3.8km",
+                "Aberto agora",
+                true,
+                Arrays.asList(
+                        new AcceptedItem("item_vidro_metal", "Vidro e Metal", 40, R.drawable.ic_recycle),
+                        new AcceptedItem("item_papel_plastico", "Papel e Plástico", 30, R.drawable.ic_leaf)
+                ),
+                -23.0980, -47.1950
+        ));
+
+        pontos.add(new CollectionPoint(
+                "5",
+                "Posto de Entrega Voluntária - Jardim Morada do Sol",
+                "Rua Jeronymo Perucci - Jardim Morada do Sol (Posto Via Brasil)",
+                "4.2km",
+                "Aberto agora",
+                true,
+                Arrays.asList(
+                        new AcceptedItem("item_vidro_metal", "Vidro e Metal", 40, R.drawable.ic_recycle),
+                        new AcceptedItem("item_papel_plastico", "Papel e Plástico", 30, R.drawable.ic_leaf),
+                        new AcceptedItem("item_pilhas_baterias", "Pilhas e Baterias", 30, R.drawable.ic_battery)
+                ),
+                -23.1050, -47.2210
+        ));
 
         return pontos;
     }
