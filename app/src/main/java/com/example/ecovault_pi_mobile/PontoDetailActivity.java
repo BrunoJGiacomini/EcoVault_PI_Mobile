@@ -3,10 +3,13 @@ package com.example.ecovault_pi_mobile;
 import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -15,6 +18,8 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.ecovault_pi_mobile.adapter.AcceptedItemAdapter;
 import com.example.ecovault_pi_mobile.model.CollectionPoint;
 import com.example.ecovault_pi_mobile.utils.LocalizacaoHelper;
+
+import java.util.Locale;
 
 public class PontoDetailActivity extends AppCompatActivity {
 
@@ -60,6 +65,11 @@ public class PontoDetailActivity extends AppCompatActivity {
         configurarStatusPonto(txtStatusPonto);
         configurarDistanciaInicial();
         carregarLocalizacaoECalcularDistancia();
+
+        View btnVerNoMaps = findViewById(R.id.btnVerNoMaps);
+        if (btnVerNoMaps != null) {
+            btnVerNoMaps.setOnClickListener(v -> abrirGoogleMaps());
+        }
 
         RecyclerView recycler = findViewById(R.id.recyclerAcceptedItems);
         recycler.setLayoutManager(new LinearLayoutManager(this));
@@ -138,6 +148,54 @@ public class PontoDetailActivity extends AppCompatActivity {
             } else {
                 txtDistanciaPonto.setText("Distância indisponível");
             }
+        }
+    }
+
+    private void abrirGoogleMaps() {
+        if (pontoAtual == null) {
+            Toast.makeText(this, "Localização indisponível", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        double latitude = pontoAtual.getLatitude();
+        double longitude = pontoAtual.getLongitude();
+
+        if (latitude == 0.0 && longitude == 0.0) {
+            Toast.makeText(this, "Localização indisponível", Toast.LENGTH_SHORT).show();
+            return;
+        }
+
+        String nomePonto = pontoAtual.getName() != null ? pontoAtual.getName() : "Ponto de Coleta";
+        String uriGeo = String.format(
+                Locale.US,
+                "geo:%.6f,%.6f?q=%.6f,%.6f(%s)",
+                latitude, longitude, latitude, longitude, Uri.encode(nomePonto)
+        );
+
+        Intent intentMaps = new Intent(Intent.ACTION_VIEW, Uri.parse(uriGeo));
+        intentMaps.setPackage("com.google.android.apps.maps");
+
+        try {
+            if (intentMaps.resolveActivity(getPackageManager()) != null) {
+                startActivity(intentMaps);
+                return;
+            }
+            startActivity(intentMaps);
+            return;
+        } catch (Exception ignored) {
+        }
+
+        String urlWeb = String.format(
+                Locale.US,
+                "https://www.google.com/maps/search/?api=1&query=%.6f,%.6f",
+                latitude, longitude
+        );
+
+        try {
+            Intent intentNavegador = new Intent(Intent.ACTION_VIEW, Uri.parse(urlWeb));
+            startActivity(intentNavegador);
+        } catch (Exception e) {
+            Toast.makeText(this, "Não foi possível abrir o mapa", Toast.LENGTH_SHORT).show();
         }
     }
 }

@@ -158,10 +158,10 @@ public class PontosActivity extends AppCompatActivity {
 
         pontos.add(new CollectionPoint(
                 "1",
-                "Ecoponto de Inertes - Jardim João Pioli",
-                "Av. Manoel Ruz Peres, esq. Av. Artes e Ofícios - Jardim João Pioli",
+                "Ecoponto João Pioli",
+                "Av. Artes e Ofícios - Conj. Hab. João Pioli, Indaiatuba - SP, 13348-635",
                 "1.2km",
-                "Aberto das 07h às 19h",
+                "Aberto todos os dias, das 07:00 às 18:50",
                 true,
                 Arrays.asList(
                         new AcceptedItem("item_eletronicos", "Eletrônicos", 80, R.drawable.ic_cpu),
@@ -169,65 +169,51 @@ public class PontosActivity extends AppCompatActivity {
                         new AcceptedItem("item_entulho", "Entulho e Madeira", 50, R.drawable.ic_recycle),
                         new AcceptedItem("item_reciclaveis", "Recicláveis", 40, R.drawable.ic_leaf)
                 ),
-                -23.0885, -47.2310
+                -23.106166432447065, -47.24108297701529
         ));
 
         pontos.add(new CollectionPoint(
                 "2",
-                "Ecoponto Parque Ecológico",
-                "Av. Eng. Fábio Roberto Barnabé - em frente ao estacionamento do Parque Ecológico",
+                "Ecoponto Quintal - Jardim Eldorado",
+                "R. Rev. Eliseu Narciso, 709 - Jardim Eldorado, Indaiatuba - SP, 13343-800",
                 "2.5km",
-                "Aberto agora",
+                "Aberto todos os dias, das 07:00 às 19:00",
                 true,
                 Arrays.asList(
                         new AcceptedItem("item_vidro_metal", "Vidro e Metal", 40, R.drawable.ic_recycle),
                         new AcceptedItem("item_papel_plastico", "Papel e Plástico", 30, R.drawable.ic_leaf),
                         new AcceptedItem("item_oleo", "Óleo de Cozinha", 50, R.drawable.ic_plug)
                 ),
-                -23.0920, -47.2180
+                -23.107647828318886, -47.20820557697205
         ));
 
         pontos.add(new CollectionPoint(
                 "3",
-                "Ecoponto Cecap III",
-                "Av. Geraldo Hackmann, nº 776 - Cecap III",
+                "Ecoponto - Jardim Olinda",
+                "R. Valdir Ferrari, 104 - Jardim Olinda, Indaiatuba - SP, 13335-560",
                 "3.1km",
-                "Aberto agora",
+                "Aberto todos os dias, das 07:00 às 19:00",
                 true,
                 Arrays.asList(
                         new AcceptedItem("item_vidro_metal", "Vidro e Metal", 40, R.drawable.ic_recycle),
                         new AcceptedItem("item_papel_plastico", "Papel e Plástico", 30, R.drawable.ic_leaf)
                 ),
-                -23.0815, -47.2050
+                -23.076521462229195, -47.193580574832026
         ));
 
         pontos.add(new CollectionPoint(
                 "4",
-                "Ecoponto Jardim Umuarama",
-                "Rua Açaí, nº 136, esquina com Rua Guayi - Jardim Umuarama",
+                "Ecoponto Jardim Nova Veneza",
+                "R. José Vilalta, 51, Indaiatuba - SP, 13348-771",
                 "3.8km",
-                "Aberto agora",
-                true,
-                Arrays.asList(
-                        new AcceptedItem("item_vidro_metal", "Vidro e Metal", 40, R.drawable.ic_recycle),
-                        new AcceptedItem("item_papel_plastico", "Papel e Plástico", 30, R.drawable.ic_leaf)
-                ),
-                -23.0980, -47.1950
-        ));
-
-        pontos.add(new CollectionPoint(
-                "5",
-                "Posto de Entrega Voluntária - Jardim Morada do Sol",
-                "Rua Jeronymo Perucci - Jardim Morada do Sol (Posto Via Brasil)",
-                "4.2km",
-                "Aberto agora",
+                "Aberto todos os dias, das 07:00 às 19:00",
                 true,
                 Arrays.asList(
                         new AcceptedItem("item_vidro_metal", "Vidro e Metal", 40, R.drawable.ic_recycle),
                         new AcceptedItem("item_papel_plastico", "Papel e Plástico", 30, R.drawable.ic_leaf),
                         new AcceptedItem("item_pilhas_baterias", "Pilhas e Baterias", 30, R.drawable.ic_battery)
                 ),
-                -23.1050, -47.2210
+                -23.097133172393214, -47.25000277846388
         ));
 
         return pontos;

@@ -86,7 +86,7 @@ public class PointCardAdapter extends RecyclerView.Adapter<PointCardAdapter.Poin
 
     @Override
     public int getItemCount() {
-        return points.size();
+        return points != null ? points.size() : 0;
     }
 
     static class PointViewHolder extends RecyclerView.ViewHolder {
