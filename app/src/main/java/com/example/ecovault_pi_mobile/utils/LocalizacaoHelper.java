@@ -5,6 +5,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.pm.PackageManager;
 import android.location.Location;
+import android.os.Handler;
 import android.os.Looper;
 
 import androidx.annotation.NonNull;
@@ -25,6 +26,9 @@ public class LocalizacaoHelper {
         void aoEncontrarLocalizacao(Location location);
         void aoFalharLocalizacao();
     }
+
+    private static final long IDADE_MAXIMA_LOCALIZACAO_MS = 2 * 60 * 1000L;
+    private static final long TIMEOUT_REQUISICAO_MS = 8000L;
 
     private final Context contexto;
     private final FusedLocationProviderClient client;
@@ -47,12 +51,20 @@ public class LocalizacaoHelper {
         }
 
         client.getLastLocation().addOnSuccessListener(location -> {
-            if (location != null) {
+            if (isLocalizacaoRecente(location)) {
                 callback.aoEncontrarLocalizacao(location);
             } else {
                 requisitarAtualizacaoUnica(callback);
             }
         }).addOnFailureListener(e -> requisitarAtualizacaoUnica(callback));
+    }
+
+    private boolean isLocalizacaoRecente(Location location) {
+        if (location == null) {
+            return false;
+        }
+        long idadeMs = System.currentTimeMillis() - location.getTime();
+        return idadeMs >= 0 && idadeMs <= IDADE_MAXIMA_LOCALIZACAO_MS;
     }
 
     @SuppressLint("MissingPermission")
@@ -61,12 +73,24 @@ public class LocalizacaoHelper {
                 .setMaxUpdates(1)
                 .build();
 
+        Handler handler = new Handler(Looper.getMainLooper());
+
         LocationCallback locationCallback = new LocationCallback() {
+            private boolean callbackExecutado = false;
+
             @Override
             public void onLocationResult(@NonNull LocationResult locationResult) {
+                if (callbackExecutado) {
+                    return;
+                }
+                callbackExecutado = true;
+
                 client.removeLocationUpdates(this);
-                if (locationResult.getLastLocation() != null) {
-                    callback.aoEncontrarLocalizacao(locationResult.getLastLocation());
+                handler.removeCallbacksAndMessages(null);
+
+                Location location = locationResult.getLastLocation();
+                if (location != null) {
+                    callback.aoEncontrarLocalizacao(location);
                 } else {
                     callback.aoFalharLocalizacao();
                 }
@@ -74,11 +98,11 @@ public class LocalizacaoHelper {
         };
 
         client.requestLocationUpdates(request, locationCallback, Looper.getMainLooper());
-        
-        // Timeout de segurança de 5 segundos
-        new android.os.Handler(Looper.getMainLooper()).postDelayed(() -> {
+
+        handler.postDelayed(() -> {
             client.removeLocationUpdates(locationCallback);
-        }, 5000);
+            callback.aoFalharLocalizacao();
+        }, TIMEOUT_REQUISICAO_MS);
     }
 
     public static float calcularDistancia(double lat1, double lng1, double lat2, double lng2) {
