@@ -1,122 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
     android:background="@color/background"
-    android:paddingStart="24dp"
-    android:paddingEnd="24dp">
+    android:fillViewport="true">
 
-    <!-- Círculo com check -->
-    <FrameLayout
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginBottom="24dp"
-        android:background="@drawable/success_circle_bg">
-
-        <ImageView
-            android:layout_width="48dp"
-            android:layout_height="48dp"
-            android:layout_gravity="center"
-            android:src="@drawable/ic_check"
-            app:tint="@color/white"
-            xmlns:app="http://schemas.android.com/apk/res-auto"/>
-    </FrameLayout>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Descarte registrado!"
-        android:textColor="@color/foreground"
-        android:textSize="26sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:layout_marginBottom="8dp"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Você acabou de fazer a coisa certa.\nAqui estão seus pontos:"
-        android:textColor="@color/muted_foreground"
-        android:textSize="13.5sp"
-        android:gravity="center"
-        android:lineSpacingExtra="3dp"
-        android:layout_marginBottom="30dp"/>
-
-    <TextView
-        android:id="@+id/txtPointsEarned"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="+110"
-        android:textColor="@color/primary"
-        android:textSize="52sp"
-        android:textStyle="bold"/>
-
-    <TextView
-        android:id="@+id/txtNewTotal"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="1.350 pontos no seu EcoSaldo"
-        android:textColor="@color/muted_foreground"
-        android:textSize="12.5sp"
-        android:layout_marginTop="4dp"
-        android:layout_marginBottom="28dp"/>
-
-    <!-- Card de progresso -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        android:background="@drawable/search_box_bg"
-        android:padding="16dp"
-        android:layout_marginBottom="24dp">
+        android:gravity="center"
+        android:paddingStart="24dp"
+        android:paddingEnd="24dp"
+        android:paddingTop="24dp"
+        android:paddingBottom="24dp">
 
+        <!-- Círculo com check -->
+        <FrameLayout
+            android:layout_width="100dp"
+            android:layout_height="100dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/success_circle_bg">
+
+            <ImageView
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:src="@drawable/ic_check"
+                app:tint="@color/white" />
+        </FrameLayout>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Descarte registrado!"
+            android:textColor="@color/foreground"
+            android:textSize="26sp"
+            android:textStyle="bold"
+            android:gravity="center"
+            android:layout_marginBottom="8dp"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Você acabou de fazer a coisa certa.\nAqui estão seus pontos:"
+            android:textColor="@color/muted_foreground"
+            android:textSize="13.5sp"
+            android:gravity="center"
+            android:lineSpacingExtra="3dp"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:id="@+id/txtPointsEarned"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+110"
+            android:textColor="@color/primary"
+            android:textSize="52sp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/txtNewTotal"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="1.350 pontos no seu EcoSaldo"
+            android:textColor="@color/muted_foreground"
+            android:textSize="12.5sp"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="28dp"/>
+
+        <!-- Card de progresso -->
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_marginBottom="8dp">
+            android:orientation="vertical"
+            android:background="@drawable/search_box_bg"
+            android:padding="16dp"
+            android:layout_marginBottom="24dp">
 
-            <TextView
-                android:id="@+id/txtProgressoLabel"
-                android:layout_width="0dp"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Progresso no nível atual"
-                android:textColor="@color/foreground"
-                android:textSize="13.5sp"
-                android:textStyle="bold"/>
+                android:orientation="horizontal"
+                android:layout_marginBottom="8dp">
 
-            <TextView
-                android:id="@+id/txtProgressoPercent"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="65%"
-                android:textColor="@color/primary"
-                android:textSize="12sp"/>
+                <TextView
+                    android:id="@+id/txtProgressoLabel"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Progresso no nível atual"
+                    android:textColor="@color/foreground"
+                    android:textSize="13.5sp"
+                    android:textStyle="bold"/>
+
+                <TextView
+                    android:id="@+id/txtProgressoPercent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="65%"
+                    android:textColor="@color/primary"
+                    android:textSize="12sp"/>
+            </LinearLayout>
+
+            <ProgressBar
+                android:id="@+id/progressNivelSucesso"
+                style="@android:style/Widget.ProgressBar.Horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="6dp"
+                android:max="100"
+                android:progress="65"
+                android:progressDrawable="@drawable/progress_gradient"/>
+
         </LinearLayout>
 
-        <ProgressBar
-            android:id="@+id/progressNivelSucesso"
-            style="@android:style/Widget.ProgressBar.Horizontal"
+        <Button
+            android:id="@+id/btnVoltarInicio"
             android:layout_width="match_parent"
-            android:layout_height="6dp"
-            android:max="100"
-            android:progress="65"
-            android:progressDrawable="@drawable/progress_gradient"/>
+            android:layout_height="56dp"
+            android:background="@drawable/gradient_cta_button"
+            android:text="Voltar para o início"
+            android:textColor="@color/white"
+            android:textSize="14.5sp"
+            android:textStyle="bold"
+            android:textAllCaps="false"/>
 
     </LinearLayout>
 
-    <Button
-        android:id="@+id/btnVoltarInicio"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:background="@drawable/gradient_cta_button"
-        android:text="Voltar para o início"
-        android:textColor="@color/white"
-        android:textSize="14.5sp"
-        android:textStyle="bold"
-        android:textAllCaps="false"/>
-
-</LinearLayout>
+</ScrollView>
