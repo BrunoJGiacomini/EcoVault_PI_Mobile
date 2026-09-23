@@ -3,7 +3,9 @@ package com.example.ecovault_pi_mobile;
 import android.app.Dialog;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.view.Window;
 import android.widget.Button;
 import android.widget.EditText;
@@ -39,11 +41,39 @@ public class AuthDialogFragment extends DialogFragment {
 
         if (dialog.getWindow() != null) {
             dialog.getWindow().setBackgroundDrawable(new ColorDrawable(0x99000000));
+            configurarTamanhoJanela(dialog.getWindow());
         }
 
         setupViews(dialog);
 
         return dialog;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if (getDialog() != null && getDialog().getWindow() != null) {
+            configurarTamanhoJanela(getDialog().getWindow());
+        }
+    }
+
+    private void configurarTamanhoJanela(Window janela) {
+        if (janela == null) {
+            return;
+        }
+
+        int larguraTela = requireContext().getResources().getDisplayMetrics().widthPixels;
+        int larguraProporcional = (int) (larguraTela * 0.92f);
+
+        int larguraMaximaPx = (int) TypedValue.applyDimension(
+                TypedValue.COMPLEX_UNIT_DIP,
+                480,
+                requireContext().getResources().getDisplayMetrics()
+        );
+
+        int larguraFinal = Math.min(larguraProporcional, larguraMaximaPx);
+
+        janela.setLayout(larguraFinal, ViewGroup.LayoutParams.WRAP_CONTENT);
     }
 
     private void setupViews(Dialog dialog) {
