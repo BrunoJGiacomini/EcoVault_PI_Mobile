@@ -118,8 +118,7 @@ public class MainActivity extends AppCompatActivity {
         RecyclerView recycler = findViewById(R.id.recyclerCategoryPills);
         recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
         recycler.setAdapter(new CategoryPillsAdapter(this, categories, item -> {
-            // navegar pra tela de Pontos
-            // startActivity(new Intent(this, PontosActivity.class));
+            startActivity(new Intent(this, PontosActivity.class));
         }));
     }
 
