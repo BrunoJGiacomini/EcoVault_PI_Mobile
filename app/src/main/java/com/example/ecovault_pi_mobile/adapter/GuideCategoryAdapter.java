@@ -20,12 +20,22 @@ import java.util.List;
 
 public class GuideCategoryAdapter extends RecyclerView.Adapter<GuideCategoryAdapter.CategoryViewHolder> {
 
+    public interface OnCategoryClickListener {
+        void onCategoryClick(GuideCategoryItem categoria);
+    }
+
     private final Context context;
     private final List<GuideCategoryItem> categories;
+    private final OnCategoryClickListener listener;
 
-    public GuideCategoryAdapter(Context context, List<GuideCategoryItem> categories) {
+    public GuideCategoryAdapter(Context context, List<GuideCategoryItem> categories, OnCategoryClickListener listener) {
         this.context = context;
         this.categories = categories;
+        this.listener = listener;
+    }
+
+    public GuideCategoryAdapter(Context context, List<GuideCategoryItem> categories) {
+        this(context, categories, null);
     }
 
     @NonNull
@@ -57,6 +67,12 @@ public class GuideCategoryAdapter extends RecyclerView.Adapter<GuideCategoryAdap
             chip.setCheckable(false);
             holder.chipGroup.addView(chip);
         }
+
+        holder.itemView.setOnClickListener(v -> {
+            if (listener != null) {
+                listener.onCategoryClick(item);
+            }
+        });
     }
 
     @Override

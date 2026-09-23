@@ -73,7 +73,11 @@ public class GuiaDescarteActivity extends AppCompatActivity {
 
         RecyclerView recycler = findViewById(R.id.recyclerCategorias);
         recycler.setLayoutManager(new LinearLayoutManager(this));
-        recycler.setAdapter(new GuideCategoryAdapter(this, categorias));
+        recycler.setAdapter(new GuideCategoryAdapter(this, categorias, categoria -> {
+            Intent intent = new Intent(this, PontosActivity.class);
+            intent.putExtra(PontosActivity.EXTRA_FILTRO_BUSCA, categoria.getTitle());
+            startActivity(intent);
+        }));
     }
 
     private void setupDicas() {
