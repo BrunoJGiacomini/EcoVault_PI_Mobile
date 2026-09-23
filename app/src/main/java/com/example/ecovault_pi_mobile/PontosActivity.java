@@ -30,6 +30,7 @@ public class PontosActivity extends AppCompatActivity {
     private LocalizacaoHelper localizacaoHelper;
     private LinearLayout bannerAviso;
     private TextView txtMensagemAviso;
+    private TextView txtQuantidadePontos;
 
     private List<CollectionPoint> listaPontos = new ArrayList<>();
     private PointCardAdapter adaptadorPontos;
@@ -59,6 +60,7 @@ public class PontosActivity extends AppCompatActivity {
         localizacaoHelper = new LocalizacaoHelper(this);
         bannerAviso = findViewById(R.id.bannerAvisoLocalizacao);
         txtMensagemAviso = findViewById(R.id.txtMensagemAviso);
+        txtQuantidadePontos = findViewById(R.id.txtQtdPontos);
 
         ImageButton btnVoltar = findViewById(R.id.btnVoltarPontos);
         btnVoltar.setOnClickListener(v -> finish());
@@ -108,6 +110,7 @@ public class PontosActivity extends AppCompatActivity {
 
     private void configurarListaPontos() {
         listaPontos = obterPontosMock();
+        atualizarTextoQuantidadePontos();
 
         RecyclerView recycler = findViewById(R.id.recyclerPontos);
         recycler.setLayoutManager(new LinearLayoutManager(this));
@@ -140,10 +143,30 @@ public class PontosActivity extends AppCompatActivity {
         }
 
         ordenarPontosPorDistancia();
+        atualizarTextoQuantidadePontos();
 
         if (adaptadorPontos != null) {
             adaptadorPontos.notifyDataSetChanged();
         }
+    }
+
+    private void atualizarTextoQuantidadePontos() {
+        if (txtQuantidadePontos == null) {
+            return;
+        }
+
+        int quantidade = listaPontos != null ? listaPontos.size() : 0;
+        String texto;
+
+        if (quantidade == 0) {
+            texto = "Nenhum ponto encontrado · Indaiatuba, SP";
+        } else if (quantidade == 1) {
+            texto = "1 ponto encontrado · Indaiatuba, SP";
+        } else {
+            texto = quantidade + " pontos encontrados · Indaiatuba, SP";
+        }
+
+        txtQuantidadePontos.setText(texto);
     }
 
     private void ordenarPontosPorDistancia() {

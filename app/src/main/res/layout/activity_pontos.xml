@@ -84,7 +84,6 @@
         android:paddingStart="20dp"
         android:paddingEnd="20dp"
         android:paddingBottom="12dp"
-        android:text="12 pontos encontrados · Indaiatuba, SP"
         android:textColor="@color/muted_foreground"
         android:textSize="12.5sp"/>
 
