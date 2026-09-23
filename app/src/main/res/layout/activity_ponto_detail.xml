@@ -102,10 +102,14 @@
 
             <!-- Map placeholder -->
             <FrameLayout
+                android:id="@+id/btnVerNoMaps"
                 android:layout_width="match_parent"
                 android:layout_height="180dp"
                 android:background="@drawable/search_box_bg"
-                android:layout_marginBottom="20dp">
+                android:layout_marginBottom="20dp"
+                android:clickable="true"
+                android:focusable="true"
+                android:foreground="?attr/selectableItemBackground">
 
                 <LinearLayout
                     android:layout_width="wrap_content"

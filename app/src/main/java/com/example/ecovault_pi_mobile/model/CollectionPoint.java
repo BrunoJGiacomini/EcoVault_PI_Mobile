@@ -10,9 +10,15 @@ public class CollectionPoint {
     private String openStatus;
     private boolean isOpen;
     private List<AcceptedItem> acceptedItems;
+    private double latitude;
+    private double longitude;
+
+    private String distanciaExibida;
+    private float distanciaEmMetros = Float.MAX_VALUE;
 
     public CollectionPoint(String id, String name, String address, String distance,
-                           String openStatus, boolean isOpen, List<AcceptedItem> acceptedItems) {
+                           String openStatus, boolean isOpen, List<AcceptedItem> acceptedItems,
+                           double latitude, double longitude) {
         this.id = id;
         this.name = name;
         this.address = address;
@@ -20,6 +26,8 @@ public class CollectionPoint {
         this.openStatus = openStatus;
         this.isOpen = isOpen;
         this.acceptedItems = acceptedItems;
+        this.latitude = latitude;
+        this.longitude = longitude;
     }
 
     public String getId() { return id; }
@@ -29,4 +37,12 @@ public class CollectionPoint {
     public String getOpenStatus() { return openStatus; }
     public boolean isOpen() { return isOpen; }
     public List<AcceptedItem> getAcceptedItems() { return acceptedItems; }
+    public double getLatitude() { return latitude; }
+    public double getLongitude() { return longitude; }
+
+    public String getDistanciaExibida() { return distanciaExibida; }
+    public void setDistanciaExibida(String distanciaExibida) { this.distanciaExibida = distanciaExibida; }
+
+    public float getDistanciaEmMetros() { return distanciaEmMetros; }
+    public void setDistanciaEmMetros(float distanciaEmMetros) { this.distanciaEmMetros = distanciaEmMetros; }
 }
