@@ -45,7 +45,6 @@
                         android:id="@+id/txtData"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="SÁBADO, 5 SET"
                         android:textColor="@color/muted_foreground"
                         android:textSize="12sp"
                         android:textStyle="bold"

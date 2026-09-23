@@ -2,11 +2,11 @@ package com.example.ecovault_pi_mobile;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
 import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -16,7 +16,6 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import android.view.View;
 
 import com.example.ecovault_pi_mobile.adapter.CategoryPillsAdapter;
 import com.example.ecovault_pi_mobile.model.CategoryItem;
@@ -24,8 +23,11 @@ import com.example.ecovault_pi_mobile.utils.SessaoUsuario;
 import com.example.ecovault_pi_mobile.utils.ThemeHelper;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -40,10 +42,9 @@ public class MainActivity extends AppCompatActivity {
             return insets;
         });
 
+        configurarDataAtual();
         setupCategoryPills();
         setupGuideCards();
-
-
 
         BottomNavigationView bottomNav = findViewById(R.id.bottomNav);
         bottomNav.setOnItemSelectedListener(item -> {
@@ -60,11 +61,10 @@ public class MainActivity extends AppCompatActivity {
             } else if (itemId == R.id.nav_guia) {
                 startActivity(new Intent(this, GuiaDescarteActivity.class));
                 return true;
+            } else if (itemId == R.id.nav_perfil) {
+                startActivity(new Intent(this, PerfilActivity.class));
+                return true;
             }
-            else if (itemId == R.id.nav_perfil) {
-            startActivity(new Intent(this, PerfilActivity.class));
-            return true;
-        }
             return false;
         });
 
@@ -88,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
             atualizarSaudacao();
         }
 
-
         ImageButton btnToggleTheme = findViewById(R.id.btnToggleTheme);
         btnToggleTheme.setOnClickListener(v -> {
             ThemeHelper.toggleTheme(this);
@@ -97,6 +96,15 @@ public class MainActivity extends AppCompatActivity {
 
         TextView txtVerGuia = findViewById(R.id.txtVerGuia);
         txtVerGuia.setOnClickListener(v -> startActivity(new Intent(this, GuiaDescarteActivity.class)));
+    }
+
+    private void configurarDataAtual() {
+        TextView txtData = findViewById(R.id.txtData);
+        if (txtData != null) {
+            SimpleDateFormat sdf = new SimpleDateFormat("EEEE, d MMM", new Locale("pt", "BR"));
+            String dataFormatada = sdf.format(new Date()).replace(".", "").toUpperCase(new Locale("pt", "BR"));
+            txtData.setText(dataFormatada);
+        }
     }
 
     private void setupCategoryPills() {
@@ -165,7 +173,6 @@ public class MainActivity extends AppCompatActivity {
                 R.color.primary));
     }
 
-
     private void bindGuideCard(View cardRoot, int bgRes, int iconRes, int tintColorRes, String title, String desc) {
         FrameLayout frameIconBg = cardRoot.findViewById(R.id.frameIconBg);
         ImageView imgIcon = cardRoot.findViewById(R.id.imgGuideIcon);
@@ -178,6 +185,7 @@ public class MainActivity extends AppCompatActivity {
         txtTitle.setText(title);
         txtDesc.setText(desc);
     }
+
     private void atualizarSaudacao() {
         TextView txtSaudacao = findViewById(R.id.txtSaudacao);
         View btnEntrar = findViewById(R.id.btnEntrarHome);
