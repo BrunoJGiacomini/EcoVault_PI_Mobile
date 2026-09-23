@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
@@ -68,8 +69,20 @@ public class MainActivity extends AppCompatActivity {
             return false;
         });
 
+        EditText edtSearch = findViewById(R.id.edtSearch);
         Button btnBuscarHome = findViewById(R.id.btnBuscar);
-        btnBuscarHome.setOnClickListener(v -> startActivity(new Intent(this, PontosActivity.class)));
+        if (btnBuscarHome != null) {
+            btnBuscarHome.setOnClickListener(v -> {
+                Intent intent = new Intent(this, PontosActivity.class);
+                if (edtSearch != null) {
+                    String textoDigitado = edtSearch.getText().toString().trim();
+                    if (!textoDigitado.isEmpty()) {
+                        intent.putExtra("filtro_busca", textoDigitado);
+                    }
+                }
+                startActivity(intent);
+            });
+        }
 
         View coletaBanner = findViewById(R.id.coletaBannerInclude);
         coletaBanner.setOnClickListener(v -> startActivity(new Intent(this, AgendarColetaActivity.class)));

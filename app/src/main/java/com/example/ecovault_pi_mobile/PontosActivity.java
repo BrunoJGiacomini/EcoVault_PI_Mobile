@@ -23,9 +23,12 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class PontosActivity extends AppCompatActivity {
+
+    public static final String EXTRA_FILTRO_BUSCA = "filtro_busca";
 
     private LocalizacaoHelper localizacaoHelper;
     private LinearLayout bannerAviso;
@@ -34,6 +37,7 @@ public class PontosActivity extends AppCompatActivity {
 
     private List<CollectionPoint> listaPontos = new ArrayList<>();
     private PointCardAdapter adaptadorPontos;
+    private String filtroBusca;
 
     private final ActivityResultLauncher<String[]> solicitadorPermissao =
             registerForActivityResult(new ActivityResultContracts.RequestMultiplePermissions(), result -> {
@@ -56,6 +60,10 @@ public class PontosActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pontos);
+
+        if (getIntent() != null && getIntent().hasExtra(EXTRA_FILTRO_BUSCA)) {
+            filtroBusca = getIntent().getStringExtra(EXTRA_FILTRO_BUSCA);
+        }
 
         localizacaoHelper = new LocalizacaoHelper(this);
         bannerAviso = findViewById(R.id.bannerAvisoLocalizacao);
@@ -85,12 +93,22 @@ public class PontosActivity extends AppCompatActivity {
             @Override
             public void aoEncontrarLocalizacao(Location localizacao) {
                 processarLocalizacaoEOrdenarPontos(localizacao);
-                ocultarAvisoLocalizacao();
+                if (listaPontos != null && !listaPontos.isEmpty()) {
+                    ocultarAvisoLocalizacao();
+                }
             }
 
             @Override
             public void aoFalharLocalizacao() {
-                mostrarAvisoLocalizacao("Não foi possível obter sua localização agora");
+                if (listaPontos == null || listaPontos.isEmpty()) {
+                    if (filtroBusca != null && !filtroBusca.trim().isEmpty()) {
+                        mostrarAvisoLocalizacao("Nenhum ponto encontrado para o item: \"" + filtroBusca + "\"");
+                    } else {
+                        mostrarAvisoLocalizacao("Não foi possível obter sua localização agora");
+                    }
+                } else {
+                    mostrarAvisoLocalizacao("Não foi possível obter sua localização agora");
+                }
             }
         });
     }
@@ -110,6 +128,14 @@ public class PontosActivity extends AppCompatActivity {
 
     private void configurarListaPontos() {
         listaPontos = obterPontosMock();
+
+        if (filtroBusca != null && !filtroBusca.trim().isEmpty()) {
+            listaPontos = aplicarFiltroBusca(listaPontos, filtroBusca);
+            if (listaPontos.isEmpty()) {
+                mostrarAvisoLocalizacao("Nenhum ponto encontrado para o item: \"" + filtroBusca + "\"");
+            }
+        }
+
         atualizarTextoQuantidadePontos();
 
         RecyclerView recycler = findViewById(R.id.recyclerPontos);
@@ -118,6 +144,32 @@ public class PontosActivity extends AppCompatActivity {
             PontoDetailActivity.start(this, ponto);
         });
         recycler.setAdapter(adaptadorPontos);
+    }
+
+    private List<CollectionPoint> aplicarFiltroBusca(List<CollectionPoint> pontosOriginais, String termo) {
+        if (pontosOriginais == null || termo == null || termo.trim().isEmpty()) {
+            return pontosOriginais;
+        }
+
+        String termoMinusculo = termo.trim().toLowerCase(Locale.ROOT);
+        List<CollectionPoint> pontosFiltrados = new ArrayList<>();
+
+        for (CollectionPoint ponto : pontosOriginais) {
+            if (ponto.getAcceptedItems() != null) {
+                boolean aceitaItemBuscado = false;
+                for (AcceptedItem item : ponto.getAcceptedItems()) {
+                    if (item.getLabel() != null && item.getLabel().toLowerCase(Locale.ROOT).contains(termoMinusculo)) {
+                        aceitaItemBuscado = true;
+                        break;
+                    }
+                }
+                if (aceitaItemBuscado) {
+                    pontosFiltrados.add(ponto);
+                }
+            }
+        }
+
+        return pontosFiltrados;
     }
 
     private void processarLocalizacaoEOrdenarPontos(Location localizacaoUsuario) {
