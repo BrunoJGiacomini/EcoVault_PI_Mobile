@@ -1,5 +1,6 @@
 plugins {
     alias(libs.plugins.android.application)
+    id("checkstyle")
 }
 
 android {
@@ -47,4 +48,16 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.espresso.core)
     androidTestImplementation(libs.ext.junit)
+}
+
+tasks.register<Checkstyle>("checkstyle") {
+    source = fileTree("src/main/java") {
+        include("**/MainActivity.java")
+        include("**/PerfilActivity.java")
+        include("**/AgendarColetaActivity.java")
+    }
+
+    configFile = file("../config/checkstyle/checkstyle.xml")
+
+    classpath = files()
 }

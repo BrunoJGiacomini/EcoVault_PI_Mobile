@@ -6,7 +6,6 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 import android.widget.ImageButton;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
@@ -50,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
             int itemId = item.getItemId();
 
             if (itemId == R.id.nav_home) {
-                return true; // já estamos na Home
+                return true;
             } else if (itemId == R.id.nav_pontos) {
                 startActivity(new Intent(this, PontosActivity.class));
                 return true;
@@ -62,24 +61,33 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
             else if (itemId == R.id.nav_perfil) {
-            startActivity(new Intent(this, PerfilActivity.class));
-            return true;
-        }
+                startActivity(new Intent(this, PerfilActivity.class));
+                return true;
+            }
             return false;
         });
 
         Button btnBuscarHome = findViewById(R.id.btnBuscar);
-        btnBuscarHome.setOnClickListener(v -> startActivity(new Intent(this, PontosActivity.class)));
+        btnBuscarHome.setOnClickListener(
+                v -> startActivity(new Intent(this, PontosActivity.class))
+        );
 
         View coletaBanner = findViewById(R.id.coletaBannerInclude);
-        coletaBanner.setOnClickListener(v -> startActivity(new Intent(this, AgendarColetaActivity.class)));
+        coletaBanner.setOnClickListener(
+                v -> startActivity(new Intent(this, AgendarColetaActivity.class))
+        );
 
         View btnEntrar = findViewById(R.id.btnEntrarHome);
         if (btnEntrar != null) {
             btnEntrar.setOnClickListener(v -> {
                 AuthDialogFragment authDialog = new AuthDialogFragment();
                 authDialog.setAuthListener(usuario -> {
-                    SessaoUsuario.salvar(this, usuario.getId(), usuario.getNome(), usuario.getEmail());
+                    SessaoUsuario.salvar(
+                            this,
+                            usuario.getId(),
+                            usuario.getNome(),
+                            usuario.getEmail()
+                    );
                     atualizarSaudacao();
                 });
                 authDialog.show(getSupportFragmentManager(), "auth_dialog");
@@ -96,23 +104,77 @@ public class MainActivity extends AppCompatActivity {
         });
 
         TextView txtVerGuia = findViewById(R.id.txtVerGuia);
-        txtVerGuia.setOnClickListener(v -> startActivity(new Intent(this, GuiaDescarteActivity.class)));
+        txtVerGuia.setOnClickListener(
+                v -> startActivity(new Intent(this, GuiaDescarteActivity.class))
+        );
     }
 
     private void setupCategoryPills() {
         List<CategoryItem> categories = new ArrayList<>();
-        categories.add(new CategoryItem("pilhas", "Pilhas", "+30pts", R.drawable.ic_battery, true));
-        categories.add(new CategoryItem("lampadas", "Lâmpadas", "+20pts", R.drawable.ic_lightbulb, false));
-        categories.add(new CategoryItem("smartphones", "Smartphones", "+80pts", R.drawable.ic_smartphone, false));
-        categories.add(new CategoryItem("cabos", "Cabos", "+15pts", R.drawable.ic_cable, false));
-        categories.add(new CategoryItem("eletronicos", "Eletrônicos", "+120pts", R.drawable.ic_monitor, false));
+        categories.add(
+                new CategoryItem(
+                        "pilhas",
+                        "Pilhas",
+                        "+30pts",
+                        R.drawable.ic_battery,
+                        true
+                )
+        );
+
+        categories.add(
+                new CategoryItem(
+                        "lampadas",
+                        "Lâmpadas",
+                        "+20pts",
+                        R.drawable.ic_lightbulb,
+                        false
+                )
+        );
+
+        categories.add(
+                new CategoryItem(
+                        "smartphones",
+                        "Smartphones",
+                        "+80pts",
+                        R.drawable.ic_smartphone,
+                        false
+                )
+        );
+
+        categories.add(
+                new CategoryItem(
+                        "cabos",
+                        "Cabos",
+                        "+15pts",
+                        R.drawable.ic_cable,
+                        false
+                )
+        );
+
+        categories.add(
+                new CategoryItem(
+                        "eletronicos",
+                        "Eletrônicos",
+                        "+120pts",
+                        R.drawable.ic_monitor,
+                        false
+                )
+        );
 
         RecyclerView recycler = findViewById(R.id.recyclerCategoryPills);
-        recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
-        recycler.setAdapter(new CategoryPillsAdapter(this, categories, item -> {
+        recycler.setLayoutManager(
+                new LinearLayoutManager(
+                        this,
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                )
+        );
+        recycler.setAdapter(
+                new CategoryPillsAdapter(this, categories, item -> {
             // navegar pra tela de Pontos
             // startActivity(new Intent(this, PontosActivity.class));
-        }));
+                })
+        );
     }
 
     private void setupGuideCards() {
@@ -166,7 +228,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void bindGuideCard(View cardRoot, int bgRes, int iconRes, int tintColorRes, String title, String desc) {
+    private void bindGuideCard(
+            View cardRoot,
+            int bgRes,
+            int iconRes,
+            int tintColorRes,
+            String title,
+            String desc
+    )  {
         FrameLayout frameIconBg = cardRoot.findViewById(R.id.frameIconBg);
         ImageView imgIcon = cardRoot.findViewById(R.id.imgGuideIcon);
         TextView txtTitle = cardRoot.findViewById(R.id.txtGuideTitle);
