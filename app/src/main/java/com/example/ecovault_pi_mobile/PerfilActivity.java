@@ -1,6 +1,6 @@
 package com.example.ecovault_pi_mobile;
 
-import android.content.SharedPreferences;
+
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.ImageButton;
@@ -72,7 +72,13 @@ public class PerfilActivity extends AppCompatActivity {
         badges.add(new Badge("🏆", "Eco Lendário", false));
 
         RecyclerView recycler = findViewById(R.id.recyclerBadges);
-        recycler.setLayoutManager(new LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false));
+        recycler.setLayoutManager(
+                new LinearLayoutManager(
+                        this,
+                        LinearLayoutManager.HORIZONTAL,
+                        false
+                )
+        );
         recycler.setAdapter(new BadgeAdapter(this, badges));
     }
 }

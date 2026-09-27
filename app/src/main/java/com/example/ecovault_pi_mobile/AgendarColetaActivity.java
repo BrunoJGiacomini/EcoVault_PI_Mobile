@@ -1,7 +1,6 @@
 package com.example.ecovault_pi_mobile;
 
 import android.app.DatePickerDialog;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -61,10 +60,15 @@ public class AgendarColetaActivity extends AppCompatActivity {
         setupDatePicker();
         setupSpinnerPeriodo();
 
-        Button btnConfirmar = findViewById(R.id.btnConfirmarAgendamento);
+        Button btnConfirmar =
+                findViewById(R.id.btnConfirmarAgendamento);
         btnConfirmar.setOnClickListener(v -> {
             if (!SessaoUsuario.estaLogado(this)) {
-                Toast.makeText(this, "Faça login para agendar uma coleta.", Toast.LENGTH_SHORT).show();
+                Toast.makeText(
+                        this,
+                        "Faça login para agendar uma coleta.",
+                        Toast.LENGTH_SHORT
+                ).show();
                 return;
             }
 
@@ -77,7 +81,12 @@ public class AgendarColetaActivity extends AppCompatActivity {
                 if (Boolean.TRUE.equals(entry.getValue())) {
                     Integer pontosItem = pontosPorItem.get(entry.getKey());
                     if (pontosItem != null) {
-                        repository.registrarDescarte(usuarioId, entry.getKey(), "Coleta em Casa", pontosItem * 2);
+                        repository.registrarDescarte(
+                                usuarioId,
+                                entry.getKey(),
+                                "Coleta em Casa",
+                                pontosItem * 2
+                        );
                     }
                 }
             }
@@ -97,18 +106,30 @@ public class AgendarColetaActivity extends AppCompatActivity {
         for (int i = 0; i < itens.length; i += 2) {
             LinearLayout row = new LinearLayout(this);
             row.setOrientation(LinearLayout.HORIZONTAL);
-            row.setLayoutParams(new LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.MATCH_PARENT, LinearLayout.LayoutParams.WRAP_CONTENT));
+            row.setLayoutParams(
+                    new LinearLayout.LayoutParams(
+                            LinearLayout.LayoutParams.MATCH_PARENT,
+                            LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
+            );
 
             View toggle1 = criarToggleItem(itens[i][0], itens[i][1], itens[i][2]);
-            LinearLayout.LayoutParams p1 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+            LinearLayout.LayoutParams p1 = new LinearLayout.LayoutParams(
+                    0,
+                    LinearLayout.LayoutParams.WRAP_CONTENT,
+                    1f
+            );
             p1.setMarginEnd(6);
             p1.bottomMargin = 10;
             row.addView(toggle1, p1);
 
             if (i + 1 < itens.length) {
                 View toggle2 = criarToggleItem(itens[i + 1][0], itens[i + 1][1], itens[i + 1][2]);
-                LinearLayout.LayoutParams p2 = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.WRAP_CONTENT, 1f);
+                LinearLayout.LayoutParams p2 = new LinearLayout.LayoutParams(
+                        0,
+                        LinearLayout.LayoutParams.WRAP_CONTENT,
+                        1f
+                );
                 p2.setMarginStart(6);
                 p2.bottomMargin = 10;
                 row.addView(toggle2, p2);
@@ -119,7 +140,11 @@ public class AgendarColetaActivity extends AppCompatActivity {
     }
 
     private View criarToggleItem(String id, String label, String iconName) {
-        View toggleView = LayoutInflater.from(this).inflate(R.layout.item_toggle, containerItens, false);
+        View toggleView = LayoutInflater.from(this).inflate(
+                R.layout.item_toggle,
+                containerItens,
+                false
+        );
 
         ImageView imgIcon = toggleView.findViewById(R.id.imgToggleIcon);
         TextView txtLabel = toggleView.findViewById(R.id.txtToggleLabel);
@@ -142,7 +167,13 @@ public class AgendarColetaActivity extends AppCompatActivity {
         return toggleView;
     }
 
-    private void aplicarEstiloToggle(View toggleView, ImageView imgIcon, TextView txtLabel, ImageView imgCheck, boolean selecionado) {
+    private void aplicarEstiloToggle(
+            View toggleView,
+            ImageView imgIcon,
+            TextView txtLabel,
+            ImageView imgCheck,
+            boolean selecionado
+    )  {
         if (selecionado) {
             toggleView.setBackgroundResource(R.drawable.item_toggle_bg_selected);
             imgIcon.setColorFilter(getColor(R.color.primary));
@@ -183,16 +214,33 @@ public class AgendarColetaActivity extends AppCompatActivity {
                 }
             }
         }
-        txtBonusDesc.setText(desc.length() > 0 ? desc.toString() + " por ser coleta em casa" : "Selecione um item");
+        txtBonusDesc.setText(
+                desc.length() > 0
+                        ? desc.toString() + " por ser coleta em casa"
+                        : "Selecione um item"
+        );
     }
 
     private void setupDatePicker() {
         Calendar calendar = Calendar.getInstance();
+
         txtDataSelecionada.setOnClickListener(v -> {
-            DatePickerDialog dialog = new DatePickerDialog(this, (view, year, month, dayOfMonth) -> {
-                String dataFormatada = String.format("%02d/%02d/%04d", dayOfMonth, month + 1, year);
-                txtDataSelecionada.setText(dataFormatada);
-            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+            DatePickerDialog dialog = new DatePickerDialog(
+                    this,
+                    (view, year, month, dayOfMonth) -> {
+                        String dataFormatada = String.format(
+                                "%02d/%02d/%04d",
+                                dayOfMonth,
+                                month + 1,
+                                year
+                        );
+                        txtDataSelecionada.setText(dataFormatada);
+                    },
+                    calendar.get(Calendar.YEAR),
+                    calendar.get(Calendar.MONTH),
+                    calendar.get(Calendar.DAY_OF_MONTH)
+            );
+
             dialog.show();
         });
     }
@@ -203,7 +251,11 @@ public class AgendarColetaActivity extends AppCompatActivity {
         periodos.add("Manhã (8h–12h)");
         periodos.add("Tarde (13h–18h)");
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_spinner_item, periodos);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                periodos
+        );
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
     }
