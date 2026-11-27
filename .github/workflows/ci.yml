@@ -27,6 +27,12 @@ jobs:
             ecovault-ci:${{ github.sha }} \
             bash -lc 'chmod +x ./gradlew && ./gradlew testDebugUnitTest assembleDebug --stacktrace'
 
+      - name: Ajustar permissões dos resultados
+        if: always()
+        run: |
+          sudo chown -R "$(id -u):$(id -g)" app/build
+          chmod -R a+rX app/build
+
       - name: Publicar relatórios de teste
         if: always()
         uses: actions/upload-artifact@v4
