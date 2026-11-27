@@ -1,0 +1,46 @@
+name: Android CI
+
+on:
+  push:
+  pull_request:
+
+permissions:
+  contents: read
+
+jobs:
+  unit-tests-and-build:
+    name: Testes unitários e build Android
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Obter código-fonte
+        uses: actions/checkout@v4
+
+      - name: Construir ambiente Docker Android
+        run: docker build --tag ecovault-ci:${{ github.sha }} .
+
+      - name: Executar testes unitários e gerar APK
+        run: |
+          docker run --rm \
+            -v "${GITHUB_WORKSPACE}:/workspace" \
+            -w /workspace \
+            ecovault-ci:${{ github.sha }} \
+            ./gradlew testDebugUnitTest assembleDebug --stacktrace
+
+      - name: Publicar relatórios de teste
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-results-${{ github.sha }}
+          path: |
+            app/build/test-results/testDebugUnitTest/
+            app/build/reports/tests/testDebugUnitTest/
+          if-no-files-found: warn
+
+      - name: Publicar APK de depuração
+        if: success()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ecovault-debug-apk-${{ github.sha }}
+          path: app/build/outputs/apk/debug/*.apk
+          if-no-files-found: warn
