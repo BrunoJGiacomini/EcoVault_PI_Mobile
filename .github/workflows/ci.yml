@@ -25,7 +25,7 @@ jobs:
             -v "${GITHUB_WORKSPACE}:/workspace" \
             -w /workspace \
             ecovault-ci:${{ github.sha }} \
-            ./gradlew testDebugUnitTest assembleDebug --stacktrace
+            bash -lc 'chmod +x ./gradlew && ./gradlew testDebugUnitTest assembleDebug --stacktrace'
 
       - name: Publicar relatórios de teste
         if: always()

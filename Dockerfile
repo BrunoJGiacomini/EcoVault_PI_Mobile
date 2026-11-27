@@ -32,6 +32,4 @@ RUN yes | sdkmanager --licenses >/dev/null && \
 WORKDIR /workspace
 COPY . /workspace
 
-RUN chmod +x gradlew
-
-CMD ["./gradlew", "testDebugUnitTest", "assembleDebug", "--stacktrace"]
+CMD ["bash", "-lc", "chmod +x ./gradlew && ./gradlew testDebugUnitTest assembleDebug --stacktrace"]
